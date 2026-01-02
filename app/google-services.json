@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "322627227660",
+    "project_id": "petconnect-1df3b",
+    "storage_bucket": "petconnect-1df3b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322627227660:android:b0bf44d8a1dca3afdd1e29",
+        "android_client_info": {
+          "package_name": "com.example.petconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUbpeqtALUlwtSOwhd-QAzml--PkRpS4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
+
+

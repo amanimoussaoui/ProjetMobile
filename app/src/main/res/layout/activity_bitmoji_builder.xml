@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Créer votre Bitmoji 🎨"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Aperçu de l'avatar -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/grey_light">
+
+            <ImageView
+                android:id="@+id/avatarPreview"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerInside"
+                android:contentDescription="Aperçu de l'avatar" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Contrôles de personnalisation -->
+        <TextView
+            android:id="@+id/skinToneLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teint de peau"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <SeekBar
+            android:id="@+id/skinToneSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/hairColorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Couleur des cheveux"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <SeekBar
+            android:id="@+id/hairColorSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/eyeColorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Couleur des yeux"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp" />
+
+        <SeekBar
+            android:id="@+id/eyeColorSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Boutons -->
+        <Button
+            android:id="@+id/generateAvatarButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Générer un nouvel avatar"
+            android:textColor="@color/primary_turquoise"
+            android:background="@drawable/social_button_bg"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/saveAvatarButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Sauvegarder l'avatar"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"
+            android:layout_marginBottom="24dp" />
+
+    </LinearLayout>
+</ScrollView>
+

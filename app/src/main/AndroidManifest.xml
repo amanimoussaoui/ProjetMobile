@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <application
+        android:name=".PetConnectApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PetConnect">
+        
+        <!-- Welcome Activity (Splash Screen) - Activity principale -->
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PetConnect">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Login Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Register Activity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Forgot Password Activity -->
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Home Activity -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Profile Activity -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Photo Verification Activity -->
+        <activity
+            android:name=".PhotoVerificationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Chatbot Activity -->
+        <activity
+            android:name=".ChatbotActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Bitmoji Builder Activity -->
+        <activity
+            android:name=".BitmojiBuilderActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Main Activity (ancienne activité, peut être supprimée) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect" />
+        
+        <!-- Facebook Configuration -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token"/>
+        
+        <!-- Facebook Activity for Login -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:replace="android:theme" />
+        
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Rive Initialization Provider -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data 
+                android:name="app.rive.runtime.kotlin.RiveInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>

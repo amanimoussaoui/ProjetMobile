@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">PetConnect</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_text">Welcome to PetConnect</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">Welcome Back! 🐾</string>
+    <string name="login_subtitle">Login to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_button">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_github">Login with GitHub</string>
+    <string name="dont_have_account">Don\'t have an account? </string>
+    
+    <!-- Register Screen -->
+    <string name="register_title">Create Account 🐶🐱</string>
+    <string name="register_subtitle">Join PetConnect today!</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="create_account_button">Create Account</string>
+    <string name="already_have_account">Already have an account? </string>
+    
+    <!-- Forgot Password -->
+    <string name="forgot_password_title">Forgot Password? 🔐</string>
+    <string name="forgot_password_message">Don\'t worry! Enter your email address and we\'ll send you a verification link to reset your password.</string>
+    <string name="send_verification_email">Send Verification Email</string>
+    <string name="email_sent">Email Sent! ✓</string>
+    <string name="check_email_message">Check your email to reset your password</string>
+    <string name="remember_password">Remember your password?</string>
+    
+    <!-- Home Screen -->
+    <string name="home_title">PetConnect 🐾</string>
+    <string name="tips_of_day">Tips of the Day 💡</string>
+    <string name="adoptable_pets">Adoptable Pets 🐾</string>
+    <string name="see_more">See More</string>
+    <string name="daily_tip">🐶 Daily Tip: Make sure to spend quality time with your pet every day! Regular playtime strengthens your bond and keeps them happy.</string>
+    
+    <!-- Profile Screen -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="badges">Badges 🏆</string>
+    <string name="adopt_lover">Adopt Lover</string>
+    <string name="animal_hero">Animal Hero</string>
+    <string name="more_badges_coming">More badges coming soon!</string>
+    <string name="logout_confirmation">Are you sure you want to logout?</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="profile_updated">Profile updated successfully! 🎉</string>
+    
+    <!-- Social Auth -->
+    <string name="default_web_client_id">322627227660-es9qbonsnuvd7igcdad0brhgirlgj1fm.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">1363328681667400</string>
+    <string name="fb_login_protocol_scheme">fb1363328681667400</string>
+    <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN_HERE</string>
+</resources>

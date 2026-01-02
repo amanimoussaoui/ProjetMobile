@@ -1,0 +1,98 @@
+{
+    "project_name": "Personal_Mobile_UI_Kit",
+    "theme": {
+      "primary_color": "#6A1B9A",
+      "secondary_color": "#E91E63",
+      "background_gradient_1": "linear-gradient(180deg, #A88BEB 0%, #6A1B9A 100%)",
+      "background_gradient_2": "linear-gradient(180deg, #FFFFFF 0%, #E0BEE0 100%)",
+      "text_color_light": "#FFFFFF",
+      "text_color_dark": "#333333",
+      "input_background_color": "#FFFFFF",
+      "social_icon_background": "#FFFFFF",
+      "font_family": "CustomSansSerif",
+      "font_weights": {
+        "heading": "bold",
+        "body": "normal"
+      }
+    },
+    "screens": [
+      {
+        "screen_name": "Login_Screen_1_Vertical_Focus",
+        "type": "Login",
+        "visual_asset": {
+          "description": "3D stylized character floating/jumping, reaching for a small dog.",
+          "placement": "Top third of the screen, slightly overlapping the main content area."
+        },
+        "components": [
+          {"type": "Heading", "text": "Welcome Back", "style": {"font_size": "medium", "color": "text_color_light"}},
+          {"type": "Title", "text": "Please, Log In.", "style": {"font_size": "large", "font_weight": "heading", "color": "text_color_light"}},
+          {"type": "Input_Field", "label": "Email", "placeholder": "johnsondoe@nomail.com", "icon": "user-icon"},
+          {"type": "Input_Field", "label": "Password", "placeholder": "**********", "icon": "lock-icon", "is_secure": true},
+          {"type": "Button", "text": "Continue >", "style": {"background": "primary_color", "text_color": "text_color_light", "is_primary": true}},
+          {"type": "Divider", "text": "Or"},
+          {"type": "Button", "text": "Create an Account", "style": {"background": "background_gradient_2", "text_color": "primary_color", "is_secondary": true}}
+        ]
+      },
+      {
+        "screen_name": "Signup_Screen_1_Vertical_Focus",
+        "type": "Signup",
+        "visual_asset": {
+          "description": "3D stylized character sitting on a small, orange rocket, flying up with clouds.",
+          "placement": "Top third of the screen, slightly overlapping the main content area."
+        },
+        "components": [
+          {"type": "Heading", "text": "Hi there!", "style": {"font_size": "medium", "color": "text_color_light"}},
+          {"type": "Title", "text": "Let's Get Started", "style": {"font_size": "large", "font_weight": "heading", "color": "text_color_light"}},
+          {"type": "Input_Field", "label": "Username", "placeholder": "Username", "icon": "user-icon"},
+          {"type": "Input_Field", "label": "Password", "placeholder": "Password", "icon": "lock-icon", "is_secure": true},
+          {"type": "Button", "text": "Create an Account", "style": {"background": "primary_color", "text_color": "text_color_light", "is_primary": true}},
+          {"type": "Divider", "text": "Or"},
+          {"type": "Button", "text": "Log In", "style": {"background": "background_gradient_2", "text_color": "primary_color", "is_secondary": true}}
+        ]
+      },
+      {
+        "screen_name": "Login_Screen_2_Side_By_Side",
+        "type": "Login",
+        "visual_asset": {
+          "description": "3D stylized character in a backpack, reading a large open book.",
+          "placement": "Top background, partially visible on the left."
+        },
+        "components": [
+          {"type": "Title", "text": "Welcome Back!", "style": {"font_size": "large", "font_weight": "heading", "color": "text_color_light"}},
+          {"type": "Subtitle", "text": "Documenting is Organizing!!", "style": {"font_size": "small", "color": "text_color_light"}},
+          {"type": "Input_Field", "label": "Username", "placeholder": "Username", "icon": "search-icon"},
+          {"type": "Input_Field", "label": "Password", "placeholder": "**********", "icon": "lock-icon", "is_secure": true, "extra_icon": "visibility-toggle"},
+          {"type": "Text_Link", "text": "Forgot Password?", "alignment": "right", "color": "primary_color"},
+          {"type": "Button", "text": "Sign in", "style": {"background": "secondary_color_gradient", "text_color": "text_color_light", "is_primary": true}},
+          {"type": "Divider", "text": "Or continue with"},
+          {"type": "Social_Login_Group", "options": ["Google", "Apple", "Facebook"], "icon_style": "circular_white_background"}
+        ]
+      },
+      {
+        "screen_name": "Signup_Screen_2_Side_By_Side",
+        "type": "Signup",
+        "visual_asset": {
+          "description": "3D stylized character in a backpack, looking at a phone with a lock icon above it.",
+          "placement": "Top background, partially visible on the right."
+        },
+        "components": [
+          {"type": "Title", "text": "Get Started Free", "style": {"font_size": "large", "font_weight": "heading", "color": "text_color_dark"}},
+          {"type": "Subtitle", "text": "Writing is clarifying!!", "style": {"font_size": "small", "color": "text_color_dark"}},
+          {"type": "Input_Field_Group", "fields": [
+            {"label": "First Name", "placeholder": "First Name"},
+            {"label": "Last Name", "placeholder": "Last Name"}
+          ]},
+          {"type": "Input_Field", "label": "College/School Name", "placeholder": "College/School Name"},
+          {"type": "Dropdown_Field", "label": "Degree", "placeholder": "Select"},
+          {"type": "Input_Field_Group", "fields": [
+            {"label": "Username", "placeholder": "@username"},
+            {"label": "Password", "placeholder": "**********", "is_secure": true}
+          ]},
+          {"type": "Input_Field", "label": "Mobile No.", "placeholder": "Mobile No."},
+          {"type": "Button", "text": "Sign up", "style": {"background": "secondary_color_gradient", "text_color": "text_color_light", "is_primary": true}},
+          {"type": "Divider", "text": "Or sign up with"},
+          {"type": "Social_Login_Group", "options": ["Google", "Apple", "Facebook"], "icon_style": "circular_white_background"}
+        ]
+      }
+    ]
+  }
