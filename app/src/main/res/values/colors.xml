@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core palette aligned to shared template -->
+    <color name="primary">#00B3AD</color>
+    <color name="primary_dark">#008A85</color>
+    <color name="accent">#4DDAD4</color>
+    <color name="background">#F8FEFD</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1B1B1B</color>
+    <color name="text_secondary">#5F6A6A</color>
+    <color name="divider">#E4F2F1</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="error">#F44336</color>
+    <color name="warning">#FF9800</color>
+</resources>

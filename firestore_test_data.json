@@ -1,0 +1,70 @@
+{
+  "events": [
+    {
+      "title": "Promenade canine au parc",
+      "description": "Rejoignez-nous pour une belle promenade avec vos chiens au parc central. Tous les chiens sont les bienvenus! Nous marcherons pendant environ 1h30 et profiterons du beau temps ensemble.",
+      "location": "Parc Central, Paris",
+      "eventDate": "2026-02-15T14:00:00Z",
+      "imageUrl": "",
+      "organizerId": "user123",
+      "maxParticipants": 20,
+      "currentParticipants": 5,
+      "isActive": true
+    },
+    {
+      "title": "Adoption de chats",
+      "description": "Venez rencontrer nos adorables chats à la recherche d'une famille aimante. Nous avons des chatons et des chats adultes de tous âges. Nos bénévoles seront présents pour vous conseiller.",
+      "location": "Refuge des Animaux, Lyon",
+      "eventDate": "2026-02-20T10:00:00Z",
+      "imageUrl": "",
+      "organizerId": "user123",
+      "maxParticipants": 30,
+      "currentParticipants": 12,
+      "isActive": true
+    },
+    {
+      "title": "Atelier dressage canin",
+      "description": "Apprenez les bases du dressage positif avec un éducateur canin professionnel. Techniques pour enseigner les commandes de base : assis, couché, au pied, etc.",
+      "location": "Centre Canin, Marseille",
+      "eventDate": "2026-02-25T15:30:00Z",
+      "imageUrl": "",
+      "organizerId": "user456",
+      "maxParticipants": 15,
+      "currentParticipants": 8,
+      "isActive": true
+    },
+    {
+      "title": "Journée vétérinaire gratuite",
+      "description": "Consultations vétérinaires gratuites pour tous les animaux de compagnie. Vaccination, vermifugation et conseils de santé disponibles.",
+      "location": "Clinique Vétérinaire du Centre, Toulouse",
+      "eventDate": "2026-03-01T09:00:00Z",
+      "imageUrl": "",
+      "organizerId": "user789",
+      "maxParticipants": 50,
+      "currentParticipants": 22,
+      "isActive": true
+    },
+    {
+      "title": "Concours de beauté canine",
+      "description": "Inscrivez votre chien au grand concours de beauté ! Plusieurs catégories : petits chiens, grands chiens, chiens de race, etc. Nombreux prix à gagner!",
+      "location": "Salle des Fêtes, Bordeaux",
+      "eventDate": "2026-03-10T14:00:00Z",
+      "imageUrl": "",
+      "organizerId": "user456",
+      "maxParticipants": 40,
+      "currentParticipants": 35,
+      "isActive": true
+    },
+    {
+      "title": "Atelier nutrition animale",
+      "description": "Découvrez comment bien nourrir votre animal de compagnie. Conseils sur l'alimentation équilibrée, les portions adaptées et les besoins nutritionnels spécifiques.",
+      "location": "Animalerie PetShop, Nice",
+      "eventDate": "2026-03-15T18:00:00Z",
+      "imageUrl": "",
+      "organizerId": "user123",
+      "maxParticipants": 25,
+      "currentParticipants": 10,
+      "isActive": true
+    }
+  ]
+}

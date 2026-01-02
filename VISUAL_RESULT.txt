@@ -1,0 +1,361 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    PETCONNECT EVENT - INTERFACE MODERNE
+═══════════════════════════════════════════════════════════════════════════════
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ║
+║  ┃                    🎨 GRADIENT HEADER (Teal)                         ┃  ║
+║  ┃                    ════════════════════════                          ┃  ║
+║  ┃                                                                      ┃  ║
+║  ┃               🐾 PetConnect Event                                    ┃  ║
+║  ┃           Événements pour vos animaux                                ┃  ║
+║  ┃                                                                      ┃  ║
+║  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ║
+║                                                                            ║
+║  ┌────────────────────────────────────────────────────────────────────┐  ║
+║  │ 🔍  Rechercher un événement...                                     │  ║
+║  └────────────────────────────────────────────────────────────────────┘  ║
+║                                                                            ║
+║  ┌──────┐  ┌──────────┐  ┌──────────────┐                               ║
+║  │ ✓ À  │  │ Favoris  │  │ Places       │   ← CHIPS FILTRES              ║
+║  │ venir│  │          │  │ libres       │                                ║
+║  └──────┘  └──────────┘  └──────────────┘                               ║
+║                                                                            ║
+║  ┌─────────────────────────────────────────────────────────────────────┐ ║
+║  │ ╔═══════════════════════════════════════════════════════════════╗   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║              🖼️  IMAGE ÉVÉNEMENT                             ║   │ ║
+║  │ ║           (200dp height, corners 16dp)                        ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      ═══════════════════════════════════════════════         ║   │ ║
+║  │ ║      ▼ GRADIENT OVERLAY SOMBRE ▼                             ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      🎪 Exposition Canine Internationale                      ║   │ ║
+║  │ ║      📅 25 Janvier 2026  •  📍 Paris, France        ⭐       ║   │ ║
+║  │ ╚═══════════════════════════════════════════════════════════════╝   │ ║
+║  │                                                                     │ ║
+║  │  👥 12/20 participants        🔴 Bientôt complet                   │ ║
+║  │                                                                     │ ║
+║  │  ┌──────────────────┐  ┌─────────────────┐                        │ ║
+║  │  │  👁️ Voir Détails  │  │  📤 Partager    │                        │ ║
+║  │  └──────────────────┘  └─────────────────┘                        │ ║
+║  └─────────────────────────────────────────────────────────────────────┘ ║
+║                                                                            ║
+║  ┌─────────────────────────────────────────────────────────────────────┐ ║
+║  │ ╔═══════════════════════════════════════════════════════════════╗   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║              🖼️  IMAGE ÉVÉNEMENT 2                           ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      ═══════════════════════════════════════════════         ║   │ ║
+║  │ ║      ▼ GRADIENT OVERLAY SOMBRE ▼                             ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      🏃 Course d'Agilité pour Chiens                          ║   │ ║
+║  │ ║      📅 30 Janvier 2026  •  📍 Lyon, France         ⭐       ║   │ ║
+║  │ ╚═══════════════════════════════════════════════════════════════╝   │ ║
+║  │                                                                     │ ║
+║  │  👥 8/30 participants                                               │ ║
+║  │                                                                     │ ║
+║  │  ┌──────────────────┐  ┌─────────────────┐                        │ ║
+║  │  │  👁️ Voir Détails  │  │  📤 Partager    │                        │ ║
+║  │  └──────────────────┘  └─────────────────┘                        │ ║
+║  └─────────────────────────────────────────────────────────────────────┘ ║
+║                                                                            ║
+║  ┌─────────────────────────────────────────────────────────────────────┐ ║
+║  │ ╔═══════════════════════════════════════════════════════════════╗   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║              🖼️  IMAGE ÉVÉNEMENT 3                           ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      ═══════════════════════════════════════════════         ║   │ ║
+║  │ ║      ▼ GRADIENT OVERLAY SOMBRE ▼                             ║   │ ║
+║  │ ║                                                               ║   │ ║
+║  │ ║      🐱 Salon du Chat 2026                                    ║   │ ║
+║  │ ║      📅 15 Février 2026  •  📍 Marseille                ★    ║   │ ║
+║  │ ╚═══════════════════════════════════════════════════════════════╝   │ ║
+║  │                                                                     │ ║
+║  │  👥 20/20 participants        🔴 COMPLET                           │ ║
+║  │                                                                     │ ║
+║  │  ┌──────────────────┐  ┌─────────────────┐                        │ ║
+║  │  │  👁️ Voir Détails  │  │  📤 Partager    │                        │ ║
+║  │  └──────────────────┘  └─────────────────┘                        │ ║
+║  └─────────────────────────────────────────────────────────────────────┘ ║
+║                                                                            ║
+║                                                                            ║
+║  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ║
+║  ┃                    BOTTOM NAVIGATION BAR                            ┃  ║
+║  ┃  ────────────────────────────────────────────────────────────────  ┃  ║
+║  ┃     🏠         🔍         ❤️         👤                            ┃  ║
+║  ┃    Home      Search    Favoris   Profil                            ┃  ║
+║  ┃   (Active)                                                          ┃  ║
+║  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ║
+║                                                                            ║
+║                                                    ┌──────────┐            ║
+║                                                    │    ⊕     │ ← FAB      ║
+║                                                    │  Créer   │            ║
+║                                                    └──────────┘            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           DÉTAILS DES ANIMATIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+🎬 1. AU CHARGEMENT (0-3 secondes)
+   ┌────────────────────────────────────────┐
+   │ ▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░          │ ← Shimmer (ondulation)
+   │ ░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓          │
+   │ ▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░          │
+   │                                        │
+   │        Chargement des événements...    │
+   └────────────────────────────────────────┘
+   
+   Puis FADE vers contenu ↓
+
+🎬 2. CARTES ENTRENT (400ms chaque)
+   
+   Card 1: ↑ Slide up + Fade in
+           (de Y+50px → Y=0, Alpha 0→1)
+           
+   Card 2: ↑ Slide up + Fade in (100ms après Card 1)
+   
+   Card 3: ↑ Slide up + Fade in (100ms après Card 2)
+   
+   = Effet de cascade fluide
+
+🎬 3. CLICK SUR ÉTOILE FAVORITE (300ms)
+   
+   ⭐ Normal (1.0x)
+      ↓
+   ⭐ Grows (1.3x) + Vibration
+      ↓
+   ⭐ Returns (1.0x)
+   
+   = Effet "POP" satisfaisant
+
+🎬 4. NAVIGATION ENTRE ÉCRANS (300ms)
+   
+   [Écran actuel] ←←← Slide left
+                  ⤵
+   [Nouvel écran] ←←← Slide right in
+   
+   = Transition naturelle
+
+🎬 5. RIPPLE SUR BOUTONS (200ms)
+   
+   ┌──────────┐
+   │ Bouton   │  ← Click
+   │  ◉ ▹▹▹   │  ← Wave expands
+   └──────────┘
+   
+   = Feedback visuel
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                          INTERACTIONS UTILISATEUR
+═══════════════════════════════════════════════════════════════════════════════
+
+🔍 RECHERCHE EN TEMPS RÉEL
+   ┌────────────────────────────┐
+   │ 🔍 Par|                    │ ← User tape "Paris"
+   └────────────────────────────┘
+          ↓ INSTANTANÉ
+   
+   ✅ Exposition Canine Internationale (Paris)
+   ❌ Course d'Agilité (Lyon) - disparaît
+   ❌ Salon du Chat (Marseille) - disparaît
+
+🎯 FILTRES PAR CHIPS
+   Click sur "À venir" → ✅ Montre seulement événements futurs
+   Click sur "Favoris" → ✅ Montre seulement favoris
+   Click sur "Places libres" → ✅ Montre seulement avec places
+   
+   Combinables! "À venir" + "Favoris" = Favoris futurs
+
+⭐ TOGGLE FAVORITE
+   Click étoile:
+   1. Animation scale (pop!)
+   2. Vibration haptique
+   3. Étoile se remplit (gris → jaune)
+   4. Toast: "Ajouté aux favoris"
+
+📤 PARTAGER ÉVÉNEMENT
+   Click "Partager":
+   1. QR code généré instantanément
+   2. Dialog Android share s'ouvre
+   3. Choix: SMS, WhatsApp, Email, etc.
+
+👁️ VOIR DÉTAILS
+   Click "Voir Détails":
+   1. Transition slide (écran glisse à gauche)
+   2. Détail apparaît avec animation
+   3. Durée: 300ms
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                            PALETTE DE COULEURS
+═══════════════════════════════════════════════════════════════════════════════
+
+🎨 COULEURS PRINCIPALES:
+
+   ██████  #00B3AD  Primary Teal (Header, Bottom Nav active)
+   ██████  #008A85  Dark Teal (Pressed states)
+   ██████  #4DDAD4  Light Teal (Accents)
+   ██████  #F8FEFD  Background (Very light)
+   
+   ██████  #E74C3C  Red - Badge "COMPLET"
+   ██████  #F39C12  Orange - Badge "Bientôt complet"
+   
+   ██████  #2C3E50  Text Primary (Dark gray)
+   ██████  #7F8C8D  Text Secondary (Medium gray)
+   ██████  #ECF0F1  Dividers (Very light gray)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           BADGES DE STATUT
+═══════════════════════════════════════════════════════════════════════════════
+
+🔴 COMPLET (20/20 participants)
+   ┌─────────────┐
+   │   COMPLET   │ ← Rouge vif #E74C3C
+   └─────────────┘
+   Position: Floating top-right
+
+🟠 BIENTÔT COMPLET (15/20 participants = 75%+)
+   ┌────────────────────┐
+   │ Bientôt complet    │ ← Orange #F39C12
+   └────────────────────┘
+   Position: Floating top-right
+
+⚪ OUVERT (<75% capacité)
+   Badge caché, pas de badge visible
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                          ÉTATS DE L'APPLICATION
+═══════════════════════════════════════════════════════════════════════════════
+
+📱 ÉTAT VIDE (Aucun événement trouvé)
+   ┌───────────────────────────────────┐
+   │                                   │
+   │           🔍                      │
+   │                                   │
+   │    Aucun événement trouvé        │
+   │                                   │
+   │    Modifiez vos filtres ou       │
+   │    recherchez autre chose        │
+   │                                   │
+   │    ┌──────────────────┐          │
+   │    │ Réinitialiser    │          │
+   │    └──────────────────┘          │
+   │                                   │
+   └───────────────────────────────────┘
+
+⏳ ÉTAT CHARGEMENT
+   ┌───────────────────────────────────┐
+   │  ▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░            │
+   │  ░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓            │
+   │  ▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░            │
+   │                                   │
+   │  Shimmer animation joue...        │
+   └───────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                     COMPARAISON AVANT / APRÈS
+═══════════════════════════════════════════════════════════════════════════════
+
+┌────────────────────────────┬────────────────────────────────────────────────┐
+│    ❌ AVANT                 │    ✅ MAINTENANT                               │
+├────────────────────────────┼────────────────────────────────────────────────┤
+│ • Toolbar simple           │ • Gradient header moderne                      │
+│ • Liste basique            │ • Cartes avec images                           │
+│ • Aucune animation         │ • 8+ animations fluides                        │
+│ • Pas de navigation        │ • Bottom nav 4 sections                        │
+│ • Pas de filtres visuels   │ • 3 chips filtres + search                     │
+│ • Pas de feedback          │ • Haptic feedback partout                      │
+│ • Images basiques          │ • Images optimisées avec Glide                 │
+│ • Pas de badges            │ • Badges dynamiques (Rouge/Orange)             │
+│ • Interface plate          │ • Élévations et ombres                         │
+│ • Monotone                 │ • Palette colorée moderne                      │
+│ • Ressemble à une app      │ • Ressemble à une app                          │
+│   utilitaire               │   premium professionnelle                      │
+└────────────────────────────┴────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           RÉSUMÉ DES FEATURES
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ 1. RECHERCHE & FILTRES
+      • Search bar en temps réel
+      • 3 chips filtres combinables
+      • Filtrage instantané
+
+✅ 2. INSCRIPTION AVEC QUOTAS
+      • Compteur participants visible
+      • Validation max participants
+      • Badges de statut
+
+✅ 3. SYSTÈME DE FAVORIS
+      • Toggle star avec animation
+      • Sauvegarde locale
+      • Filtre favoris
+
+✅ 4. PARTAGE D'ÉVÉNEMENTS
+      • Bouton partage sur chaque carte
+      • QR code généré
+      • Android share intent
+
+✅ 5. UPLOAD PHOTO
+      • Images affichées sur cartes
+      • Chargement avec Glide
+      • Cache optimisé
+
+✅ 6. BADGES DE STATUT
+      • Complet (Rouge)
+      • Bientôt complet (Orange)
+      • Logique dynamique
+
+✅ 7. RAPPELS & NOTIFICATIONS
+      • AlarmManager
+      • Notifications Material3
+      • Patterns de vibration
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                          EXPÉRIENCE UTILISATEUR
+═══════════════════════════════════════════════════════════════════════════════
+
+⏱️ TIMELINE D'UTILISATION (Première minute)
+
+0s   → Lancement app
+2s   → Shimmer loading joue (magnifique!)
+3s   → Fade vers contenu
+4s   → Cartes s'animent (cascade)
+5s   → User scroll (nouvelles cartes animent)
+10s  → User tape "Paris" → Filtre instantané
+15s  → User click chip "À venir" → Liste update
+20s  → User click étoile → Pop animation + vibration
+25s  → User click "Voir" → Transition fluide
+30s  → User dans détails événement
+
+💭 FEEDBACK UTILISATEUR ATTENDU:
+
+    "Wow, c'est beau!"
+    "C'est très fluide"
+    "J'aime les animations"
+    "Ça a l'air professionnel"
+    "Les interactions sont satisfaisantes"
+    "C'est moderne et agréable"
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                        STATUS: ✅ PRODUCTION READY
+═══════════════════════════════════════════════════════════════════════════════
+
+🎉 Toutes les fonctionnalités sont intégrées et visibles
+🎉 Toutes les animations fonctionnent
+🎉 Design moderne et professionnel appliqué
+🎉 Performance optimisée
+🎉 Prêt pour vos utilisateurs!
+

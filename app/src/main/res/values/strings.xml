@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PetConnect Event</string>
+    
+    <!-- Event Module Strings -->
+    <string name="events_title">Événements</string>
+    <string name="event_detail_title">Détails de l\'événement</string>
+    <string name="add_event_title">Créer un événement</string>
+    <string name="edit_event_title">Modifier l\'événement</string>
+    <string name="register_event_title">Inscription</string>
+    
+    <!-- Labels -->
+    <string name="event_title">Titre</string>
+    <string name="event_description">Description</string>
+    <string name="event_location">Lieu</string>
+    <string name="event_date">Date</string>
+    <string name="event_max_participants">Participants max</string>
+    <string name="event_participants">Participants: %1$d/%2$d</string>
+    
+    <!-- Buttons -->
+    <string name="btn_register">S\'inscrire</string>
+    <string name="btn_save">Enregistrer</string>
+    <string name="btn_confirm">Confirmer l\'inscription</string>
+    <string name="btn_cancel">Annuler</string>
+    
+    <!-- Messages -->
+    <string name="msg_event_added">Événement ajouté avec succÚs</string>
+    <string name="msg_event_updated">Événement mis à jour</string>
+    <string name="msg_event_deleted">Événement supprimé</string>
+    <string name="msg_registration_success">Inscription confirmée !</string>
+    <string name="msg_registration_cancelled">Inscription annulée</string>
+    <string name="msg_event_full">Cet événement est complet</string>
+    <string name="msg_error">Une erreur s\'est produite</string>
+    <string name="msg_loading">Chargement...</string>
+    <string name="msg_no_events">Aucun événement disponible</string>
+    
+    <!-- Hints -->
+    <string name="hint_name">Nom complet</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_notes">Notes (optionnel)</string>
+    
+    <!-- Menu -->
+    <string name="menu_add_event">Ajouter événement</string>
+    <string name="menu_edit">Modifier</string>
+    <string name="menu_delete">Supprimer</string>
+    <string name="menu_view_registrations">Voir les inscriptions</string>
+    <string name="menu_refresh">Actualiser</string>
+</resources>

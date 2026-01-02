@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ========================================
+    // RÈGLES DE TEST - DÉVELOPPEMENT UNIQUEMENT
+    // ========================================
+    // Ces règles permettent à tout le monde de lire et écrire
+    // Expiration: 1er février 2026
+    // ⚠️ À REMPLACER en production!
+    
+    match /{document=**} {
+      allow read, write: if request.time < timestamp.date(2026, 2, 1);
+    }
+    
+    // ========================================
+    // RÈGLES DE PRODUCTION (À activer plus tard)
+    // ========================================
+    // Décommentez ces règles et supprimez celles du dessus
+    // quand vous ajoutez Firebase Authentication
+    
+    /*
+    // Collection des événements
+    match /events/{eventId} {
+      // Tout le monde peut lire les événements
+      allow read: if true;
+      
+      // Seuls les utilisateurs authentifiés peuvent créer/modifier
+      allow create, update: if request.auth != null;
+      
+      // Seul le créateur peut supprimer
+      allow delete: if request.auth != null && 
+                       request.auth.uid == resource.data.organizerId;
+    }
+    
+    // Collection des inscriptions
+    match /event_registrations/{registrationId} {
+      // Les utilisateurs authentifiés peuvent lire leurs inscriptions
+      allow read: if request.auth != null;
+      
+      // Tout utilisateur authentifié peut créer une inscription
+      allow create: if request.auth != null;
+      
+      // Seul l'utilisateur concerné peut annuler son inscription
+      allow delete: if request.auth != null && 
+                       request.auth.uid == resource.data.userId;
+      
+      // Personne ne peut modifier une inscription (seulement créer/supprimer)
+      allow update: if false;
+    }
+    */
+  }
+}
