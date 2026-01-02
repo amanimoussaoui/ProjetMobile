@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PetConnect</string>
+
+    <!-- Main Screen -->
+    <string name="home_title">We\'re looking for a home</string>
+    <string name="home_subtitle">Each one of our adorable friends is waiting for a loving family. Maybe it\'s you?</string>
+    <string name="hero_title">We\'re looking for a home</string>
+    <string name="hero_subtitle">Each one of our adorable friends is waiting for a loving family. Maybe it\'s you?</string>
+
+    <!-- Pet Card -->
+    <string name="adopt_me_button">Adopt Me 🏡</string>
+    <string name="years_old">%s years old</string>
+    <string name="months_old">%s months old</string>
+
+    <!-- Pet Details -->
+    <string name="about_title">About %s</string>
+    <string name="about_me_title">About me</string>
+    <string name="requirements_title">Requirements</string>
+    <string name="adoption_requirements_title">Adoption Requirements</string>
+    <string name="adopt_button">I want to adopt %s!</string>
+    <string name="pet_image_description">Pet image</string>
+    <string name="favorite_button_description">Add to favorites</string>
+
+    <!-- Adoption Form -->
+    <string name="adopt_title">Adopt %s</string>
+    <string name="form_subtitle">Please fill out this form to begin the adoption process</string>
+    <string name="personal_info_title">Personal Information</string>
+    <string name="personal_information_title">Personal Information</string>
+    <string name="housing_info_title">Housing Information</string>
+    <string name="housing_information_title">Housing Information</string>
+    <string name="adoption_conditions_title">Adoption Conditions</string>
+    <string name="motivation_title">Motivation</string>
+    <string name="commitments_title">Commitments</string>
+
+    <!-- Form Fields -->
+    <string name="first_name">First Name</string>
+    <string name="first_name_label">First Name</string>
+    <string name="first_name_hint">Enter your first name</string>
+    <string name="last_name">Last Name</string>
+    <string name="last_name_label">Last Name</string>
+    <string name="last_name_hint">Enter your last name</string>
+    <string name="email">Email</string>
+    <string name="email_label">Email Address</string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="phone">Phone Number</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="phone_hint">Enter your phone number</string>
+    <string name="address">Address</string>
+    <string name="address_label">Complete Address</string>
+    <string name="address_hint">Enter your complete address</string>
+
+    <string name="housing_type">Type of housing</string>
+    <string name="housing_type_label">Type of Housing</string>
+    <string name="house">House</string>
+    <string name="housing_house">House</string>
+    <string name="apartment">Apartment</string>
+    <string name="housing_apartment">Apartment</string>
+    <string name="other">Other</string>
+
+    <string name="outdoor_space">Do you have outdoor space?</string>
+    <string name="outdoor_space_label">Do you have outdoor space?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="previous_pet">Have you had pets before?</string>
+    <string name="previous_pet_label">Have you had pets before?</string>
+
+    <string name="time_available">How much time can you dedicate daily?</string>
+    <string name="time_available_label">How much time can you dedicate daily?</string>
+    <string name="less_than_2h">Less than 2 hours</string>
+    <string name="time_less_1h">Less than 1 hour</string>
+    <string name="between_2_4h">2-4 hours</string>
+    <string name="time_1to3h">1-3 hours</string>
+    <string name="more_than_4h">More than 4 hours</string>
+    <string name="time_more_3h">More than 3 hours</string>
+
+    <string name="motivation_label">Why do you want to adopt this pet?</string>
+    <string name="motivation_question">Why do you want to adopt this pet?</string>
+    <string name="motivation_hint">Tell us about your motivation…</string>
+
+    <string name="commitment_care">I commit to providing proper care and attention</string>
+    <string name="commitment_conditions">I understand and accept the adoption conditions</string>
+    <string name="commitment_contact">I agree to be contacted for follow-up</string>
+
+    <string name="submit_button">Submit Application</string>
+    <string name="submit_application_button">Send Adoption Request</string>
+
+    <!-- Validation Messages -->
+    <string name="form_validation_error">Please fill in all required fields</string>
+    <string name="email_validation_error">Please enter a valid email address</string>
+    <string name="housing_type_validation_error">Please select your housing type</string>
+    <string name="outdoor_space_validation_error">Please indicate if you have outdoor space</string>
+    <string name="previous_pet_validation_error">Please indicate if you\'ve had pets before</string>
+    <string name="time_available_validation_error">Please indicate how much time you can dedicate</string>
+    <string name="motivation_validation_error">Please tell us why you want to adopt this pet</string>
+    <string name="commitments_validation_error">Please accept all commitments</string>
+
+    <!-- Success Messages -->
+    <string name="adoption_success_message">Thank you! Your application to adopt %s has been submitted successfully. We will contact you soon!</string>
+
+    <!-- Pet Information -->
+    <string name="pet_gender_male">Male</string>
+    <string name="pet_gender_female">Female</string>
+
+    <!-- Navigation -->
+    <string name="back">Back</string>
+</resources>
