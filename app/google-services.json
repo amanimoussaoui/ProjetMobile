@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "369501397638",
+    "project_id": "petconnect-forum",
+    "storage_bucket": "petconnect-forum.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369501397638:android:d81042f6127b45a60da707",
+        "android_client_info": {
+          "package_name": "com.Projet.forum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHNuczLloARAMr2lIcfPK-MJMmd8GjVog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
