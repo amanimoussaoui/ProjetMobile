@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PetConnect-Shop</string>
+
+        <string name="product_image_description">Image du produit</string>
+        <string name="add_to_cart">Ajouter</string>
+
+</resources>

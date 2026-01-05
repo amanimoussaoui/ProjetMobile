@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs principales (palette PetConnect Shop) -->
+    <!-- Primaire : bleu-vert doux -->
+    <color name="primary_color">#329DA3</color>
+    <color name="primary_dark">#26757A</color>
+
+    <!-- Textes -->
+    <color name="text_primary">#1F1F1F</color>
+    <color name="text_secondary">#5A5A5A</color>
+
+    <!-- Arrière-plans -->
+    <color name="background_grey">#F4F9FA</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Navigation -->
+    <color name="bottom_nav_color">#329DA3</color>
+
+    <!-- Statut -->
+    <color name="status_pending">#FFA726</color>
+    <color name="status_completed">#4CAF50</color>
+    <color name="status_cancelled">#F44336</color>
+    <color name="status_paid">#4CAF50</color>
+
+
+        <!-- Couleurs principales -->
+
+        <color name="primary_light">#E9F5F5</color>
+
+        <!-- Textes -->
+
+
+        <!-- État et statistiques -->
+        <color name="success">#4CAF50</color>
+        <color name="warning">#FF9800</color>
+        <color name="error">#F44336</color>
+
+        <!-- Arrière-plans -->
+    <!-- Ajoutez ces couleurs à votre fichier colors.xml -->
+    <color name="heart_red">#FF3B30</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+
+
+    <!-- Ajoutez ces couleurs -->
+    <!-- Accent orange chaud -->
+    <color name="colorAccent">#F9A826</color>
+
+    <!-- Dans res/values/colors.xml -->
+    <color name="divider_grey">#1F000000</color>
+
+
+</resources>
