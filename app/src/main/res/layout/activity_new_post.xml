@@ -1,36 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@color/pure_white">
 
-    <!-- App Bar -->
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- ✅ Added Toolbar so binding.toolbar works -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="0dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_teal"
+        app:titleTextColor="@color/secondary_gold"
+        app:navigationIconTint="@color/secondary_gold"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/teal_primary"
-            app:title="@string/create_discussion"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_close"
-            app:navigationIconTint="@color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Scrollable Form -->
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,64 +28,80 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nouveau Post"
+                android:textColor="@color/rich_black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+
             <!-- Title Field -->
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/title"
-                app:boxStrokeColor="@color/teal_primary"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                android:hint="Titre"
+                app:boxStrokeColor="@color/primary_teal"
+                app:hintTextColor="@color/rich_black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:imeOptions="actionNext" />
+                    android:textColor="@color/rich_black"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- ✅ Category Dropdown (Material Design Style) -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Sélectionner une Catégorie"
+                app:boxStrokeColor="@color/primary_teal"
+                app:hintTextColor="@color/rich_black">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textColor="@color/rich_black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Content Field -->
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="@string/content"
-                app:boxStrokeColor="@color/teal_primary"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                app:startIconDrawable="@drawable/ic_edit"
-                app:startIconTint="@color/teal_primary">
+                android:hint="Votre message"
+                app:boxStrokeColor="@color/primary_teal"
+                app:hintTextColor="@color/rich_black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:minLines="10"
+                    android:layout_height="250dp"
                     android:gravity="top"
-                    android:scrollbars="vertical" />
-
+                    android:textColor="@color/rich_black" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Note: Image attachment views have been removed -->
+            <!-- Gold Save Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPublish"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:text="SAUVEGARDER"
+                android:textColor="@color/rich_black"
+                android:textStyle="bold"
+                app:backgroundTint="@color/secondary_gold"
+                app:cornerRadius="12dp" />
 
         </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <!-- Publish Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonPublish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/publish"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:padding="16dp"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom"
-        app:backgroundTint="@color/teal_primary"
-        app:iconTint="@color/white" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

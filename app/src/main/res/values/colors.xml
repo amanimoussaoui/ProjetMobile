@@ -14,4 +14,10 @@
     <color name="text_light">#BDBDBD</color>
     <color name="divider">#E0E0E0</color>
     <color name="icon_yellow">#FFC107</color>
+    <color name="primary_teal">#008080</color>
+    <color name="secondary_gold">#FFD700</color>
+    <color name="deep_gold">#C5A000</color>
+    <color name="pure_white">#FFFFFF</color>
+    <color name="rich_black">#000000</color>
+    <color name="surface_grey">#F5F5F5</color>
 </resources>

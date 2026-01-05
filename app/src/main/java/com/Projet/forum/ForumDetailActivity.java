@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.Projet.forum.databinding.ActivityForumDetailBinding;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ForumDetailActivity extends AppCompatActivity {
 
     private ActivityForumDetailBinding binding;
     private Post post;
     private String currentUserId;
+    private String currentUserName;
     private boolean isAdmin;
 
     @Override
@@ -33,6 +33,7 @@ public class ForumDetailActivity extends AppCompatActivity {
         String postId = getIntent().getStringExtra("postId");
         User currentUser = FirebaseStorageHelper.getInstance().getCurrentUser();
         currentUserId = (currentUser != null) ? currentUser.getId() : "";
+        currentUserName = (currentUser != null) ? currentUser.getName() : "Anonyme";
         isAdmin = (currentUser != null) && currentUser.isAdmin();
 
         setupToolbar();
@@ -101,9 +102,13 @@ public class ForumDetailActivity extends AppCompatActivity {
         });
         binding.recyclerViewComments.setAdapter(adapter);
         binding.buttonCommentCount.setText(String.valueOf(post.getComments().size()));
+
         binding.fabAddComment.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddCommentActivity.class);
             intent.putExtra("postId", post.getPostId());
+            // ✅ We pass the author info to AddCommentActivity to trigger notification there too
+            intent.putExtra("postAuthorId", post.getAuthor().getId());
+            intent.putExtra("postTitle", post.getTitle());
             startActivity(intent);
         });
     }
@@ -113,9 +118,7 @@ public class ForumDetailActivity extends AppCompatActivity {
         editText.setText(oldComment.getContent());
         new AlertDialog.Builder(this).setTitle("Modifier commentaire").setView(editText)
                 .setPositiveButton("OK", (d, w) -> {
-                    // ✅ Apply Profanity Filter before updating
                     String filteredText = ProfanityFilter.filter(editText.getText().toString());
-
                     Comment updated = new Comment(oldComment.getCommentId(), oldComment.getPostId(), oldComment.getAuthor(), filteredText, oldComment.getTimestamp());
 
                     FirebaseFirestore.getInstance().collection("posts").document(post.getPostId())
@@ -126,9 +129,33 @@ public class ForumDetailActivity extends AppCompatActivity {
     }
 
     private void handleLike() {
-        if (currentUserId.isEmpty()) return;
+        if (currentUserId.isEmpty() || post == null) return;
+
+        boolean currentlyLiked = post.isLikedBy(currentUserId);
+
         FirebaseFirestore.getInstance().collection("posts").document(post.getPostId())
-                .update("likedUserIds", post.isLikedBy(currentUserId) ? FieldValue.arrayRemove(currentUserId) : FieldValue.arrayUnion(currentUserId));
+                .update("likedUserIds", currentlyLiked ? FieldValue.arrayRemove(currentUserId) : FieldValue.arrayUnion(currentUserId))
+                .addOnSuccessListener(aVoid -> {
+                    // ✅ Feature 5: Only notify if the user is Liking (not unliking)
+                    if (!currentlyLiked) {
+                        sendNotification(post.getAuthor().getId(), "Nouveau Like !", currentUserName + " a aimé votre post : " + post.getTitle());
+                    }
+                });
+    }
+
+    // ✅ Feature 5: Helper method to bridge notification to Firestore
+    private void sendNotification(String targetUserId, String title, String message) {
+        if (targetUserId == null || targetUserId.equals(currentUserId)) return;
+
+        Map<String, Object> notif = new HashMap<>();
+        notif.put("targetUserId", targetUserId);
+        notif.put("senderId", currentUserId);
+        notif.put("title", title);
+        notif.put("message", message);
+        notif.put("timestamp", System.currentTimeMillis());
+        notif.put("isRead", false);
+
+        FirebaseFirestore.getInstance().collection("notifications").add(notif);
     }
 
     private void deleteThisPost() {

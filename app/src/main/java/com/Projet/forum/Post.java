@@ -1,14 +1,17 @@
-package com.Projet.forum;import com.google.firebase.firestore.IgnoreExtraProperties;
+package com.Projet.forum;
+
+import com.google.firebase.firestore.IgnoreExtraProperties;
 import java.util.ArrayList;
 import java.util.List;
 
-@IgnoreExtraProperties // ✅ Prevents crashes/warnings from old 'imageUrl' fields in DB
+@IgnoreExtraProperties // ✅ Prevents crashes/warnings from old fields in DB
 public class Post {
 
     private String postId;
     private User author;
     private String title;
     private String content;
+    private String category; // ✅ Added field for Feature 2
     private long timestamp;
     private List<String> likedUserIds;
     private List<Comment> comments;
@@ -19,12 +22,14 @@ public class Post {
         this.likedUserIds = new ArrayList<>();
     }
 
-    public Post(String postId, User author, String title, String content, long timestamp) {
+    // Updated constructor to include category
+    public Post(String postId, User author, String title, String content, long timestamp, String category) {
         this.postId = postId;
         this.author = author;
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
+        this.category = category; // ✅ Set the category
         this.comments = new ArrayList<>();
         this.likedUserIds = new ArrayList<>();
     }
@@ -41,16 +46,17 @@ public class Post {
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
 
+    // ✅ Added Getter and Setter for Category
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
     public long getTimestamp() { return timestamp; }
     public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
-    // ✅ FIXED: Calculate count from the list size.
-    // This ensures the number displayed is always accurate to the data.
     public int getLikeCount() {
         return getLikedUserIds().size();
     }
 
-    // Firestore needs this to map the field if it exists, but we don't use it for logic
     public void setLikeCount(int count) { /* ignored */ }
 
     public List<String> getLikedUserIds() {
@@ -65,7 +71,6 @@ public class Post {
     }
     public void setComments(List<Comment> comments) { this.comments = comments; }
 
-    // ✅ FIXED: Check if user liked
     public boolean isLikedBy(String userId) {
         if (userId == null) return false;
         return getLikedUserIds().contains(userId);

@@ -7,6 +7,9 @@
     <!-- Android 13+ image permission -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
+    <!-- ✅ NEW: Notification permission for Android 13+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,6 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Forum">
+
+        <!-- ✅ NEW: Register the Firebase Messaging Service -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <!-- LOGIN ACTIVITY LAUNCHER -->
         <activity

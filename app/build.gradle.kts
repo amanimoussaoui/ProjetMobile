@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
     implementation("com.google.firebase:firebase-storage:21.0.1")
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
 
     
     // Navigation

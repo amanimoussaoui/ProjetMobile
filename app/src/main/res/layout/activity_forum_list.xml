@@ -4,47 +4,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="#F5F5F5"> <!-- Light Grey for contrast -->
 
-    <!-- App Bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0dp">
 
-        <!-- IMPORTANT: AppCompat Toolbar -->
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/teal_primary"
-            app:title="@string/forum_community"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_home" />
+            app:title="Forum PetConnect"
+            app:titleTextColor="#FFD700" />
 
+        <!-- Category Section: Smaller & Compact -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_primary"
+            android:paddingBottom="12dp"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:itemSpacing="4dp"
+                app:lineSpacing="4dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tous"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    app:chipMinHeight="32dp"
+                    app:chipStartPadding="8dp"
+                    app:chipEndPadding="8dp"
+                    app:chipBackgroundColor="#FFD700"
+                    app:strokeWidth="0dp"/>
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPosts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="8dp"/>
 
-    <!-- FAB -->
+    <!-- New Post FAB in Gold -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabNewPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/create_discussion"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
         app:srcCompat="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/teal_primary"
-        app:tint="@color/white"
-        app:layout_anchor="@id/recyclerViewPosts"
-        app:layout_anchorGravity="bottom|end" />
+        app:tint="#000000"
+        app:backgroundTint="#FFD700"
+        app:elevation="6dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

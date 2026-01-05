@@ -6,6 +6,7 @@ public class User {
     private String email;
     private String password;
     private boolean isAdmin;
+    private String fcmToken; // ✅ Add this
 
     // Add this inside User class
     public User() {}
@@ -16,6 +17,10 @@ public class User {
         this.password = password;
         this.isAdmin = isAdmin;
     }
+
+    public String getFcmToken() { return fcmToken; }
+    public void setFcmToken(String fcmToken) { this.fcmToken = fcmToken; }
+
 
 
     public User(String id, String email, String name,  boolean isAdmin) {

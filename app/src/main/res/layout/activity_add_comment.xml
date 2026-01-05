@@ -1,76 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light">
+    android:background="@color/pure_white">
 
-    <!-- App Bar -->
-    <com.google.android.material.appbar.AppBarLayout
+    <!-- Teal Toolbar with Gold title -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:elevation="0dp">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_teal"
+        app:title="Ajouter un commentaire"
+        app:titleTextColor="@color/secondary_gold"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/teal_primary"
-            app:title="@string/add_comment"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_close"
-            app:navigationIconTint="@color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Form Content -->
-    <androidx.core.widget.NestedScrollView
+    <!-- Comment Input Area -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:hint="Votre commentaire..."
+        app:hintTextColor="@color/rich_black"
+        app:boxStrokeColor="@color/primary_teal"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSendComment"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextComment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:textColor="@color/rich_black"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/write_comment_hint"
-                app:boxStrokeColor="@color/teal_primary"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextComment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:minLines="5"
-                    android:gravity="top"
-                    android:scrollbars="vertical" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <!-- Send Button -->
+    <!-- Gold Button at the Bottom -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSendComment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/send"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:padding="16dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        app:backgroundTint="@color/teal_primary"
-        app:iconTint="@color/white"
-        app:layout_anchorGravity="bottom" />
+        android:text="PUBLIER"
+        android:textColor="@color/rich_black"
+        android:textStyle="bold"
+        app:backgroundTint="@color/secondary_gold"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_send"
+        app:iconGravity="textStart"
+        app:iconTint="@color/rich_black"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
