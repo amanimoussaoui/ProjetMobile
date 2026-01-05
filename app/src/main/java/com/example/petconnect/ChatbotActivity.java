@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.petconnect.utils.ChatbotApiService;
 import com.example.petconnect.utils.ChatbotAssistant;
+import com.example.petconnect.utils.FirebaseGeminiService;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
@@ -46,7 +46,7 @@ public class ChatbotActivity extends AppCompatActivity {
         botAvatar = findViewById(R.id.botAvatar);
         
         // Afficher un message de bienvenue
-        addBotMessage("Bonjour ! Je suis votre assistant virtuel PetConnect. " +
+        addBotMessage("Bonjour ! Je suis votre assistant virtuel PetConnect alimenté par Gemini AI. " +
                       "Je peux vous aider avec des questions sur l'adoption, les soins et le comportement des animaux. " +
                       "Comment puis-je vous aider aujourd'hui ?");
         
@@ -80,8 +80,9 @@ public class ChatbotActivity extends AppCompatActivity {
         // Afficher un indicateur de chargement
         loadingMessageView = addLoadingMessage();
         
-        // Appeler l'API du chatbot
-        ChatbotApiService.getResponse(message, new ChatbotApiService.ChatbotCallback() {
+        // Appeler Firebase Gemini API
+        FirebaseGeminiService geminiService = FirebaseGeminiService.getInstance(this);
+        geminiService.getResponse(message, this, new FirebaseGeminiService.GeminiCallback() {
             @Override
             public void onSuccess(String response) {
                 // Retirer le message de chargement et ajouter la vraie réponse
@@ -101,7 +102,7 @@ public class ChatbotActivity extends AppCompatActivity {
                         chatContainer.removeView(loadingMessageView);
                     }
                     String fallbackResponse = ChatbotAssistant.getResponse(message);
-                    addBotMessage(fallbackResponse);
+                    addBotMessage("⚠️ " + error + "\n\n" + fallbackResponse);
                 });
             }
         });

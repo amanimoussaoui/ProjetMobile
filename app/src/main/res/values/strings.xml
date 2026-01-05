@@ -57,5 +57,8 @@
     <string name="default_web_client_id">322627227660-es9qbonsnuvd7igcdad0brhgirlgj1fm.apps.googleusercontent.com</string>
     <string name="facebook_app_id">1363328681667400</string>
     <string name="fb_login_protocol_scheme">fb1363328681667400</string>
-    <string name="facebook_client_token">YOUR_FACEBOOK_CLIENT_TOKEN_HERE</string>
+    <string name="facebook_client_token">62848ce2ccff856d6b542f72842d1173</string>
+    
+    <!-- Firebase AI (Gemini) -->
+    <string name="gemini_api_key">AIzaSyA7Sg13JUJITJJfGlFAotnWpy8k4J5_FVA</string>
 </resources>

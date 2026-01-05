@@ -52,6 +52,12 @@ public class BitmojiBuilderActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.saveAvatarButton);
         generateButton = findViewById(R.id.generateAvatarButton);
         
+        // Vérifier que le bouton est trouvé
+        if (saveButton == null) {
+            Toast.makeText(this, "Erreur: Bouton de sauvegarde introuvable", Toast.LENGTH_LONG).show();
+            android.util.Log.e("BitmojiBuilder", "saveAvatarButton not found in layout");
+        }
+        
         TextView skinToneLabel = findViewById(R.id.skinToneLabel);
         TextView hairColorLabel = findViewById(R.id.hairColorLabel);
         TextView eyeColorLabel = findViewById(R.id.eyeColorLabel);
@@ -203,23 +209,32 @@ public class BitmojiBuilderActivity extends AppCompatActivity {
     }
     
     private void saveAvatar() {
+        android.util.Log.d("BitmojiBuilder", "saveAvatar() called");
+        
         if (currentAvatar == null) {
-            Toast.makeText(this, "Aucun avatar à sauvegarder", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("BitmojiBuilder", "currentAvatar is null");
+            Toast.makeText(this, "Aucun avatar à sauvegarder. Veuillez générer un avatar d'abord.", Toast.LENGTH_LONG).show();
             return;
         }
         
         FirebaseUser user = FirebaseAuthManager.getInstance().getCurrentUser();
         if (user == null) {
-            Toast.makeText(this, "Utilisateur non connecté", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("BitmojiBuilder", "User is null");
+            Toast.makeText(this, "Utilisateur non connecté. Veuillez vous reconnecter.", Toast.LENGTH_LONG).show();
             return;
         }
         
         String userId = user.getUid();
+        android.util.Log.d("BitmojiBuilder", "Saving avatar for user: " + userId);
         
         // Désactiver le bouton pendant la sauvegarde
         if (saveButton != null) {
             saveButton.setEnabled(false);
             saveButton.setText("Sauvegarde...");
+        } else {
+            android.util.Log.e("BitmojiBuilder", "saveButton is null!");
+            Toast.makeText(this, "Erreur: Bouton introuvable", Toast.LENGTH_SHORT).show();
+            return;
         }
         
         // Sauvegarder les paramètres
@@ -231,10 +246,12 @@ public class BitmojiBuilderActivity extends AppCompatActivity {
         final String avatarData = AvatarBuilder.saveAvatarData(userId, preferences);
         
         // Uploader l'image
+        android.util.Log.d("BitmojiBuilder", "Starting image upload...");
         ImageStorageManager.getInstance().uploadProfileImageFromBitmap(userId, currentAvatar, 
             new ImageStorageManager.UploadCallback() {
                 @Override
                 public void onSuccess(String imageUrl) {
+                    android.util.Log.d("BitmojiBuilder", "Image uploaded successfully: " + imageUrl);
                     // Mettre à jour le profil utilisateur
                     UserManager.getInstance().getUser(userId, new UserManager.UserCallback() {
                         @Override
@@ -250,10 +267,11 @@ public class BitmojiBuilderActivity extends AppCompatActivity {
                                     runOnUiThread(() -> {
                                         if (saveButton != null) {
                                             saveButton.setEnabled(true);
-                                            saveButton.setText("Sauvegarder");
+                                            saveButton.setText("Sauvegarder l'avatar");
                                         }
                                         Toast.makeText(BitmojiBuilderActivity.this, 
-                                            "Avatar sauvegardé avec succès !", Toast.LENGTH_SHORT).show();
+                                            "✓ Avatar sauvegardé avec succès !", Toast.LENGTH_SHORT).show();
+                                        android.util.Log.d("BitmojiBuilder", "Avatar saved successfully, finishing activity");
                                         finish();
                                     });
                                 }
@@ -330,10 +348,11 @@ public class BitmojiBuilderActivity extends AppCompatActivity {
                 
                 @Override
                 public void onError(String errorMessage) {
+                    android.util.Log.e("BitmojiBuilder", "Image upload error: " + errorMessage);
                     runOnUiThread(() -> {
                         if (saveButton != null) {
                             saveButton.setEnabled(true);
-                            saveButton.setText("Sauvegarder");
+                            saveButton.setText("Sauvegarder l'avatar");
                         }
                         Toast.makeText(BitmojiBuilderActivity.this, 
                             "Erreur lors de l'upload: " + errorMessage, Toast.LENGTH_LONG).show();

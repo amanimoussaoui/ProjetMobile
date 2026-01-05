@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light">
+
+    <!-- Toolbar avec bouton retour -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_turquoise"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_turquoise"
+            app:title="Edit Profile"
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:navigationIconTint="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- SECTION 1: EN-TÊTE AVATAR -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center_horizontal">
+
+                <!-- Photo de profil circulaire -->
+                <FrameLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardCornerRadius="75dp"
+                        app:cardElevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/profileImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_profile"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Profile Photo" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Bouton changer photo -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/changePhotoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="@color/white"
+                        app:backgroundTint="@color/primary_turquoise"
+                        app:fabSize="mini" />
+                </FrameLayout>
+
+                <!-- Indicateur de progression -->
+                <TextView
+                    android:id="@+id/profileCompletionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile completed: 75%"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <ProgressBar
+                    android:id="@+id/profileCompletionProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="200dp"
+                    android:layout_height="8dp"
+                    android:progress="75"
+                    android:progressTint="@color/primary_turquoise"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Bouton Bimoji -->
+                <Button
+                    android:id="@+id/bimojiButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎨 Create Bimoji"
+                    android:textColor="@color/primary_turquoise"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 2: BADGES ET RÉCOMPENSES -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Level 5 - Master of Cats"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <ProgressBar
+                    android:id="@+id/levelProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:progress="60"
+                    android:progressTint="@color/primary_turquoise"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Badges Collected"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Galerie de badges -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4"
+                    android:rowCount="1"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:contentDescription="Badge 1"
+                        android:padding="8dp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:contentDescription="Badge 2"
+                        android:padding="8dp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:contentDescription="Badge 3"
+                        android:padding="8dp" />
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        android:contentDescription="Badge 4"
+                        android:padding="8dp" />
+                </GridLayout>
+
+                <Button
+                    android:id="@+id/viewAllBadgesButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View All My Badges"
+                    android:textColor="@color/primary_turquoise"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 3: INFORMATIONS PERSONNELLES -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personal Information"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Nom complet -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fullNameLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+                    app:startIconTint="@color/primary_turquoise">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fullNameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Nom d'utilisateur -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+                    app:startIconTint="@color/primary_turquoise"
+                    app:suffixText="@">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernameEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Email -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_dialog_email"
+                    app:startIconTint="@color/primary_turquoise">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:enabled="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/verifyEmailButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verify Email"
+                    android:textColor="@color/primary_turquoise"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textSize="12sp"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Téléphone -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phoneLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_call"
+                    app:startIconTint="@color/primary_turquoise">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Localisation -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/locationLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_mylocation"
+                    app:startIconTint="@color/primary_turquoise">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/locationEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Bio -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bioLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bio (150 characters max)"
+                    android:layout_marginBottom="12dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_edit"
+                    app:startIconTint="@color/primary_turquoise"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="150">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/bioEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="3"
+                        android:maxLength="150" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Membre depuis -->
+                <TextView
+                    android:id="@+id/memberSinceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Member since: January 2024"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:enabled="false" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 4: PRÉFÉRENCES ANIMAUX -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Animal Preferences"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Animals"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Liste animaux -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@android:drawable/ic_menu_agenda"
+                            android:contentDescription="Cat"
+                            android:layout_marginEnd="8dp" />
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@android:drawable/ic_menu_agenda"
+                            android:contentDescription="Dog"
+                            android:layout_marginEnd="8dp" />
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@android:drawable/ic_menu_agenda"
+                            android:contentDescription="Rabbit"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/addAnimalButton"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:text="+"
+                            android:textSize="24sp"
+                            android:textColor="@color/primary_turquoise"
+                            android:backgroundTint="@android:color/transparent" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Préférences -->
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/canKeepCatsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="I can keep cats"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/canWalkDogsCheckBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="I can walk dogs"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/emergencyAvailableSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Available for emergency care"
+                    android:textColor="@color/text_primary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 5: PARAMÈTRES DE CONFIDENTIALITÉ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Settings"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile Visibility"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <RadioGroup
+                    android:id="@+id/profileVisibilityRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp">
+
+                    <RadioButton
+                        android:id="@+id/publicRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Public"
+                        android:checked="true" />
+
+                    <RadioButton
+                        android:id="@+id/friendsOnlyRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Friends only" />
+
+                    <RadioButton
+                        android:id="@+id/privateRadioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Private" />
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location Sharing"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/locationSharingSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" />
+
+                <Button
+                    android:id="@+id/notificationsSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔔 Notification Settings"
+                    android:textColor="@color/primary_turquoise"
+                    android:backgroundTint="@android:color/transparent" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 6: COMPÉTENCES ET CERTIFICATIONS -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skills &amp; Certifications"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Verified Certifications"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Animal First Aid"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Behaviorist Training"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⏳ Advanced Veterinary Care (Pending)"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Specialties (Tags)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#Kittens"
+                        android:clickable="true"
+                        android:checkable="true"
+                        android:layout_marginEnd="8dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#ActiveDogs"
+                        android:clickable="true"
+                        android:checkable="true"
+                        android:layout_marginEnd="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#SeniorAnimals"
+                        android:clickable="true"
+                        android:checkable="true"
+                        android:layout_marginEnd="8dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#Medication"
+                        android:clickable="true"
+                        android:checkable="true" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 7: GALERIE PHOTOS -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Photo Gallery"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowCount="2"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="4dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="4dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="4dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="4dp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"
+                        android:layout_margin="4dp" />
+
+                    <Button
+                        android:id="@+id/addPhotoButton"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_columnWeight="1"
+                        android:text="+"
+                        android:textSize="32sp"
+                        android:textColor="@color/primary_turquoise"
+                        android:backgroundTint="@color/grey_light"
+                        android:layout_margin="4dp" />
+                </GridLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- SECTION 8: BOUTONS ACTION -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="❌ Cancel"
+                android:textColor="@color/text_primary"
+                android:backgroundTint="@color/grey_light" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="💾 Save"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/primary_turquoise" />
+
+            <Button
+                android:id="@+id/advancedSettingsButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="⚙️ Settings"
+                android:textColor="@color/primary_turquoise"
+                android:backgroundTint="@android:color/transparent" />
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation"
+        app:itemIconTint="@color/primary_turquoise"
+        app:itemTextColor="@color/primary_turquoise"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -87,6 +87,17 @@ public class ProfileActivity extends AppCompatActivity {
         emailTextView = findViewById(R.id.emailTextView);
         profileImageView = findViewById(R.id.profileImageView);
         progressBar = findViewById(R.id.progressBar);
+        
+        // Setup Toolbar with back button
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
+            }
+            toolbar.setNavigationOnClickListener(v -> finish());
+        }
 
         // BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -103,7 +114,57 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Bouton Edit Profile
         Button editProfileButton = findViewById(R.id.editProfileButton);
-        editProfileButton.setOnClickListener(v -> showEditProfileDialog());
+        editProfileButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            startActivityForResult(intent, 200);
+        });
+        
+        // Change photo button
+        com.google.android.material.floatingactionbutton.FloatingActionButton changePhotoButton = findViewById(R.id.changePhotoButton);
+        if (changePhotoButton != null) {
+            changePhotoButton.setOnClickListener(v -> showImageSourceDialog());
+        }
+        
+        // Bimoji button
+        Button bimojiButton = findViewById(R.id.bimojiButton);
+        if (bimojiButton != null) {
+            bimojiButton.setOnClickListener(v -> {
+                Intent intent = new Intent(ProfileActivity.this, BitmojiBuilderActivity.class);
+                startActivity(intent);
+            });
+        }
+        
+        // View all badges button
+        Button viewAllBadgesButton = findViewById(R.id.viewAllBadgesButton);
+        if (viewAllBadgesButton != null) {
+            viewAllBadgesButton.setOnClickListener(v -> {
+                Toast.makeText(this, "All badges feature coming soon", Toast.LENGTH_SHORT).show();
+            });
+        }
+        
+        // Add animal button
+        Button addAnimalButton = findViewById(R.id.addAnimalButton);
+        if (addAnimalButton != null) {
+            addAnimalButton.setOnClickListener(v -> {
+                Toast.makeText(this, "Add animal feature coming soon", Toast.LENGTH_SHORT).show();
+            });
+        }
+        
+        // Add photo button
+        Button addPhotoButton = findViewById(R.id.addPhotoButton);
+        if (addPhotoButton != null) {
+            addPhotoButton.setOnClickListener(v -> {
+                showImageSourceDialog();
+            });
+        }
+        
+        // Advanced settings button
+        Button advancedSettingsButton = findViewById(R.id.advancedSettingsButton);
+        if (advancedSettingsButton != null) {
+            advancedSettingsButton.setOnClickListener(v -> {
+                Toast.makeText(this, "Advanced settings coming soon", Toast.LENGTH_SHORT).show();
+            });
+        }
         
         // Bouton Chatbot
         Button chatbotButton = findViewById(R.id.chatbotButton);
@@ -250,8 +311,38 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void updateProfileInfo() {
         if (currentUser != null) {
-            nameTextView.setText(currentUser.getFullName());
-            emailTextView.setText(currentUser.getEmail());
+            if (nameTextView != null) {
+                nameTextView.setText(currentUser.getFullName());
+            }
+            if (emailTextView != null) {
+                emailTextView.setText(currentUser.getEmail());
+            }
+            
+            // Update username
+            TextView usernameTextView = findViewById(R.id.usernameTextView);
+            if (usernameTextView != null) {
+                // You can add username field to User model if needed
+                usernameTextView.setText(currentUser.getEmail() != null ? 
+                    currentUser.getEmail().split("@")[0] : "");
+            }
+            
+            // Update phone
+            TextView phoneTextView = findViewById(R.id.phoneTextView);
+            if (phoneTextView != null && currentUser.getPhoneNumber() != null) {
+                phoneTextView.setText(currentUser.getPhoneNumber());
+            }
+            
+            // Update location
+            TextView locationTextView = findViewById(R.id.locationTextView);
+            if (locationTextView != null && currentUser.getAddress() != null) {
+                locationTextView.setText(currentUser.getAddress());
+            }
+            
+            // Update bio (if you add it to User model)
+            TextView bioTextView = findViewById(R.id.bioTextView);
+            if (bioTextView != null) {
+                bioTextView.setText("Passionate about animals and pet care!");
+            }
             
             // Charger l'image de profil si elle existe
             if (currentUser.getPhotoUrl() != null && !currentUser.getPhotoUrl().isEmpty()) {

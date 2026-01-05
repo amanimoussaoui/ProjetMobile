@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -161,16 +162,28 @@ public class LoginActivity extends AppCompatActivity {
             loginButton.setOnClickListener(v -> handleLogin());
         }
 
-        // Google Sign In Button
-        Button googleSignInButton = findViewById(R.id.googleSignInButton);
+        // Google Sign In Button (ImageView now)
+        ImageView googleSignInButton = findViewById(R.id.googleSignInButton);
         if (googleSignInButton != null) {
             googleSignInButton.setOnClickListener(v -> handleGoogleSignIn());
         }
+        
+        // Google CardView clickable
+        MaterialCardView googleButtonCard = findViewById(R.id.googleButtonCard);
+        if (googleButtonCard != null) {
+            googleButtonCard.setOnClickListener(v -> handleGoogleSignIn());
+        }
 
-        // Facebook Sign In Button
-        Button facebookSignInButton = findViewById(R.id.facebookSignInButton);
+        // Facebook Sign In Button (ImageView now)
+        ImageView facebookSignInButton = findViewById(R.id.facebookSignInButton);
         if (facebookSignInButton != null) {
             facebookSignInButton.setOnClickListener(v -> handleFacebookSignIn());
+        }
+        
+        // Facebook CardView clickable
+        MaterialCardView facebookButtonCard = findViewById(R.id.facebookButtonCard);
+        if (facebookButtonCard != null) {
+            facebookButtonCard.setOnClickListener(v -> handleFacebookSignIn());
         }
         
         // Setup animations
@@ -347,24 +360,13 @@ public class LoginActivity extends AppCompatActivity {
             dividerTextView.startAnimation(dividerFadeIn);
         }
 
-        // Animation for Google button
-        MaterialCardView googleButtonCard = findViewById(R.id.googleButtonCard);
-        if (googleButtonCard != null) {
-            Animation googleSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_in_up);
-            googleSlideUp.setStartOffset(1800);
-            googleSlideUp.setDuration(1000);
-            googleSlideUp.setInterpolator(new DecelerateInterpolator());
-            googleButtonCard.startAnimation(googleSlideUp);
-        }
-
-        // Animation for Facebook button
-        MaterialCardView facebookButtonCard = findViewById(R.id.facebookButtonCard);
-        if (facebookButtonCard != null) {
-            Animation facebookSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_in_up);
-            facebookSlideUp.setStartOffset(2000);
-            facebookSlideUp.setDuration(1000);
-            facebookSlideUp.setInterpolator(new DecelerateInterpolator());
-            facebookButtonCard.startAnimation(facebookSlideUp);
+        // Animation for social login icons
+        LinearLayout socialLoginLayout = findViewById(R.id.socialLoginLayout);
+        if (socialLoginLayout != null) {
+            Animation socialFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+            socialFadeIn.setStartOffset(1800);
+            socialFadeIn.setDuration(1000);
+            socialLoginLayout.startAnimation(socialFadeIn);
         }
 
         // Animation for Create Account Link
@@ -403,7 +405,10 @@ public class LoginActivity extends AppCompatActivity {
         if (attemptManager.isLocked(email)) {
             long remainingTime = attemptManager.getRemainingLockTime(email);
             int minutes = (int) (remainingTime / (60 * 1000));
-            Toast.makeText(this, "Account locked. Try again in " + minutes + " minutes", Toast.LENGTH_LONG).show();
+            String lockMessage = "⚠️ Compte verrouillé après 3 tentatives échouées.\n" +
+                    "Un email d'avertissement a été envoyé à votre adresse.\n" +
+                    "Réessayez dans " + minutes + " minute(s).";
+            Toast.makeText(this, lockMessage, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -477,15 +482,15 @@ public class LoginActivity extends AppCompatActivity {
                 // Display error with remaining attempts
                 String errorMsg = errorMessage;
                 if (attempts >= 3) {
-                    errorMsg += "\n3 failed attempts. Photo verification required.";
-                    // Launch photo verification activity
-                    Intent intent = new Intent(LoginActivity.this, PhotoVerificationActivity.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                    // Don't display error here as we redirect to photo verification
+                    errorMsg += "\n⚠️ 3 tentatives échouées. Compte verrouillé.\n" +
+                            "Un email d'avertissement a été envoyé à votre adresse.\n" +
+                            "Votre compte est verrouillé pour 15 minutes.";
+                    // Afficher le message et ne pas rediriger vers photo verification
+                    // car le compte est maintenant verrouillé
+                    Toast.makeText(LoginActivity.this, errorMsg, Toast.LENGTH_LONG).show();
                     return;
                 } else {
-                    errorMsg += "\nRemaining attempts: " + (3 - attempts);
+                    errorMsg += "\n⚠️ Tentatives restantes: " + (3 - attempts);
                 }
                 
                 if (errorMessage.contains("email")) {

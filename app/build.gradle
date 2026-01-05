@@ -1,0 +1,83 @@
+plugins {
+    alias libs.plugins.android.application
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.example.petconnect'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.example.petconnect'
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles(
+                getDefaultProguardFile('proguard-android-optimize.txt'),
+                'proguard-rules.pro'
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    
+    // Firebase BOM
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.auth
+    implementation libs.firebase.firestore
+    implementation libs.firebase.storage
+    
+    // Firebase AI Logic SDK - Commenté car la dépendance n'est pas disponible publiquement
+    // Pour utiliser Firebase AI, vous devez activer l'extension Firebase AI dans Firebase Console
+    // et utiliser le SDK Gemini directement: implementation 'com.google.ai.client.generativeai:generativeai:0.2.2'
+    // implementation 'com.google.firebase:firebase-ai'
+    
+    // Required for Java (ListenableFuture from Guava Android)
+    implementation 'com.google.guava:guava:31.0.1-android'
+    
+    // Required for streaming operations (Publisher from Reactive Streams)
+    implementation 'org.reactivestreams:reactive-streams:1.0.4'
+    
+    // Glide for image loading
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    
+    // Google Sign-In
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+    
+    // Facebook SDK
+    implementation 'com.facebook.android:facebook-login:16.2.0'
+    implementation libs.credentials
+    implementation libs.credentials.play.services.auth
+    implementation libs.googleid
+
+    // Rive for animations
+    implementation 'app.rive:rive-android:8.6.0'
+
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
+

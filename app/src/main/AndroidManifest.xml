@@ -63,6 +63,13 @@
             android:exported="false"
             android:theme="@style/Theme.PetConnect" />
         
+        <!-- Edit Profile Activity -->
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetConnect"
+            android:parentActivityName=".ProfileActivity" />
+        
         <!-- Photo Verification Activity -->
         <activity
             android:name=".PhotoVerificationActivity"
