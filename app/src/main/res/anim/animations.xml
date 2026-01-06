@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Animations de transition -->
+    <anim name="slide_in_right">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <translate
+                android:fromXDelta="100%"
+                android:toXDelta="0"
+                android:duration="300"
+                android:interpolator="@android:interpolator/decelerate_quint" />
+        </set>
+    </anim>
+
+    <anim name="slide_out_right">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <translate
+                android:fromXDelta="0"
+                android:toXDelta="100%"
+                android:duration="300"
+                android:interpolator="@android:interpolator/accelerate_quint" />
+        </set>
+    </anim>
+
+    <anim name="slide_in_left">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <translate
+                android:fromXDelta="-100%"
+                android:toXDelta="0"
+                android:duration="300"
+                android:interpolator="@android:interpolator/decelerate_quint" />
+        </set>
+    </anim>
+
+    <anim name="slide_out_left">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <translate
+                android:fromXDelta="0"
+                android:toXDelta="-100%"
+                android:duration="300"
+                android:interpolator="@android:interpolator/accelerate_quint" />
+        </set>
+    </anim>
+
+    <anim name="fade_in">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <alpha
+                android:fromAlpha="0"
+                android:toAlpha="1"
+                android:duration="400"
+                android:interpolator="@android:interpolator/decelerate_cubic" />
+        </set>
+    </anim>
+
+    <anim name="fade_out">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <alpha
+                android:fromAlpha="1"
+                android:toAlpha="0"
+                android:duration="400"
+                android:interpolator="@android:interpolator/accelerate_cubic" />
+        </set>
+    </anim>
+
+    <anim name="scale_in">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <scale
+                android:fromXScale="0.8"
+                android:toXScale="1"
+                android:fromYScale="0.8"
+                android:toYScale="1"
+                android:pivotX="50%"
+                android:pivotY="50%"
+                android:duration="300"
+                android:interpolator="@android:interpolator/decelerate_quint" />
+        </set>
+    </anim>
+
+    <anim name="bounce_in">
+        <set xmlns:android="http://schemas.android.com/apk/res/android">
+            <scale
+                android:fromXScale="0.5"
+                android:toXScale="1"
+                android:fromYScale="0.5"
+                android:toYScale="1"
+                android:pivotX="50%"
+                android:pivotY="50%"
+                android:duration="500"
+                android:interpolator="@android:interpolator/bounce" />
+        </set>
+    </anim>
+
+</resources>

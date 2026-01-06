@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="teal_primary">#26C6B8</color>
+    <color name="teal_dark">#1FA89D</color>
+    <color name="teal_light">#4DD4C8</color>
+
+    <!-- Shared Module Colors -->
+    <color name="primary">#00B3AD</color>
+    <color name="primary_color">#329DA3</color>
+    <color name="background_grey">#F4F9FA</color>
+    <color name="background">#F8FEFD</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="accent">#4DDAD4</color>
+    <color name="colorAccent">#F9A826</color>
+    <color name="status_completed">#4CAF50</color>
+    <color name="primary_light">#E9F5F5</color>
+    <color name="heart_red">#FF3B30</color>
+
+    <!-- Accent Colors -->
+    <color name="coral_primary">#FF6B6B</color>
+    <color name="coral_dark">#E85555</color>
+    <color name="coral_light">#FF7777</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#2D3748</color>
+    <color name="text_secondary">#4A5568</color>
+    <color name="text_tertiary">#718096</color>
+    <color name="text_light">#9CA3AF</color>
+
+    <!-- Background Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="background_light">#F7FAFC</color>
+    <color name="background_gray">#EDF2F7</color>
+
+    <!-- Border Colors -->
+    <color name="border_light">#E2E8F0</color>
+    <color name="border_medium">#CBD5E0</color>
+    <color name="border_gray">#D1D5DB</color>
+
+    <!-- Heart/Red Colors -->
+    <color name="red_heart">#EF4444</color>
+    <color name="red_required">#DC2626</color>
+
+    <!-- Status Colors -->
+    <color name="success">#48BB78</color>
+    <color name="error">#F56565</color>
+    <color name="warning">#ED8936</color>
+    <color name="info">#4299E1</color>
+
+    <!-- Additional Colors -->
+    <color name="divider">#E5E7EB</color>
+
+    <!-- Overlay Colors -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40000000</color>
+
+    <!-- Default Material Colors (if needed) -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <!-- NOUVELLES COULEURS POUR LE FORMULAIRE -->
+    <!-- Score colors - Utilisant vos couleurs existantes -->
+    <color name="score_ideal">#48BB78</color>      <!-- success -->
+    <color name="score_good">#FFD700</color>        <!-- Jaune/Or -->
+    <color name="score_medium">#ED8936</color>      <!-- warning -->
+    <color name="score_low">#EF4444</color>         <!-- red_heart -->
+    <color name="score_none">#9CA3AF</color>        <!-- text_light -->
+    <!-- Teal secondary pour les dégradés -->
+    <color name="teal_secondary">#0EA5E9</color>
+
+</resources>

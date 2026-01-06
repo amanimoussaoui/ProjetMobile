@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ===========================================
+         MERGED PERMISSIONS FROM ALL MODULES
+         =========================================== -->
+    
+    <!-- Permissions Internet & Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Permissions Notifications & Alarms -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- Permissions Media & Storage -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    
+    <!-- Permissions SMS & Phone (Adoption module) -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    
+    <!-- Features -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <!-- ===========================================
+         APPLICATION DEFINITION
+         =========================================== -->
+    <application
+        android:name=".PetConnectApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PetConnect"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- ===========================================
+             MAIN LAUNCHER ACTIVITY
+             =========================================== -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ===========================================
+             EVENT MODULE ACTIVITIES
+             =========================================== -->
+        <activity
+            android:name=".modules.event.activity.EventListActivity"
+            android:exported="false"
+            android:label="@string/events_title"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".modules.event.activity.EventDetailActivity"
+            android:exported="false"
+            android:label="@string/event_detail_title"
+            android:parentActivityName=".modules.event.activity.EventListActivity" />
+
+        <activity
+            android:name=".modules.event.activity.AddEditEventActivity"
+            android:exported="false"
+            android:label="@string/add_event_title"
+            android:parentActivityName=".modules.event.activity.EventListActivity" />
+
+        <activity
+            android:name=".modules.event.activity.RegisterEventActivity"
+            android:exported="false"
+            android:label="@string/register_event_title"
+            android:parentActivityName=".modules.event.activity.EventDetailActivity" />
+
+        <!-- Event Broadcast Receiver -->
+        <receiver
+            android:name=".modules.event.broadcast.ReminderBroadcastReceiver"
+            android:exported="false"
+            android:permission="android.permission.SCHEDULE_EXACT_ALARM">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ===========================================
+             ADOPTION MODULE ACTIVITIES
+             =========================================== -->
+        <activity
+            android:name=".modules.adoption.MainActivity"
+            android:exported="false"
+            android:label="@string/adoption" />
+
+        <activity
+            android:name=".modules.adoption.PetDetailsActivity"
+            android:exported="false"
+            android:label="@string/about_title" />
+
+        <activity
+            android:name=".modules.adoption.AdoptionFormActivity"
+            android:exported="false"
+            android:label="@string/adopt_title" />
+
+        <!-- ===========================================
+             SHOP MODULE ACTIVITIES
+             =========================================== -->
+        <activity
+            android:name=".modules.shop.MainActivity"
+            android:exported="false"
+            android:label="@string/shop" />
+
+        <activity
+            android:name=".modules.shop.activities.ShopActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".modules.shop.activities.CartActivity"
+            android:exported="false"
+            android:label="@string/cart_title" />
+
+        <activity
+            android:name=".modules.shop.activities.OrderHistoryActivity"
+            android:exported="false"
+            android:label="@string/order_history" />
+
+        <activity
+            android:name=".modules.shop.activities.ProductDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".modules.shop.activities.InvoiceActivity"
+            android:exported="false"
+            android:label="@string/invoice" />
+
+        <!-- ===========================================
+             USER MODULE ACTIVITIES
+             =========================================== -->
+        <activity
+            android:name=".modules.user.ProfileActivity"
+            android:exported="false"
+            android:label="@string/profile" />
+        <activity
+            android:name=".modules.user.LoginActivity"
+            android:exported="false"
+            android:label="@string/login" />
+        <activity
+            android:name=".modules.user.RegisterActivity"
+            android:exported="false"
+            android:label="@string/register" />
+        <activity
+            android:name=".modules.user.ForgotPasswordActivity"
+            android:exported="false"
+            android:label="@string/forgot_password" />
+
+        <!-- ===========================================
+             CONTENT PROVIDERS
+             =========================================== -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

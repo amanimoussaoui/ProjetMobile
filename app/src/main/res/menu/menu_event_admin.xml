@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add_event"
+        android:title="Ajouter événement"
+        android:icon="@drawable/ic_add_event"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_edit_event"
+        android:title="Modifier"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_delete_event"
+        android:title="Supprimer"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_view_registrations"
+        android:title="Voir les inscriptions"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="Actualiser"
+        app:showAsAction="never" />
+
+</menu>

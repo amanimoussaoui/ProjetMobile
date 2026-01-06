@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA">
+
+    <!-- Header Moderne avec dégradé subtil -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/headerCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="0dp"
+        android:backgroundTint="@color/white">
+
+        <LinearLayout
+            android:id="@+id/headerMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/header_gradient_subtle"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp">
+
+            <!-- Logo + Titre + Badge -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:id="@+id/logoImageView"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/logo_background"
+                        android:contentDescription="@string/app_name"
+                        android:src="@mipmap/ic_launcher"
+                        android:elevation="0dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PetConnect"
+                            android:textSize="24sp"
+                            android:textColor="@color/text_primary"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.01" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trouvez votre compagnon"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginTop="2dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Badge compteur moderne -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    android:backgroundTint="@color/teal_primary">
+
+                    <TextView
+                        android:id="@+id/resultsCounter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5 animaux"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="18dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp" />
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <!-- Barre de recherche ultra-moderne -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="1dp"
+                android:backgroundTint="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🔍"
+                        android:textSize="22sp"
+                        android:layout_marginEnd="12dp" />
+
+                    <EditText
+                        android:id="@+id/searchEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:hint="Rechercher par race..."
+                        android:textSize="15sp"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="#A0A0A0"
+                        android:background="@android:color/transparent"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeOptions="actionSearch" />
+
+                    <ImageView
+                        android:id="@+id/clearSearchButton"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="8dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:visibility="gone"
+                        android:contentDescription="Clear search"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless" />
+
+                    <!-- Divider vertical -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="28dp"
+                        android:background="#E8E8E8"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <!-- Bouton Tri -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/sortByLocationButton"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        android:backgroundTint="#E8F5F3"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="📍"
+                            android:textSize="20sp"
+                            android:gravity="center" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Bouton Reset -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/resetFilterButton"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:layout_marginStart="8dp"
+                        app:cardCornerRadius="14dp"
+                        app:cardElevation="0dp"
+                        android:backgroundTint="#FFF3E0"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="🔄"
+                            android:textSize="20sp"
+                            android:gravity="center" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Hero Section minimaliste -->
+    <RelativeLayout
+        android:id="@+id/heroSection"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_below="@id/headerCard"
+        android:background="@drawable/hero_gradient_modern"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
+
+        <!-- Paws décoratives subtiles -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🐾"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:alpha="0.15"
+            android:rotation="-15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🐾"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:alpha="0.12"
+            android:rotation="20" />
+
+        <!-- Texte hero centré -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_title"
+                android:textSize="26sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:lineHeight="34dp"
+                android:letterSpacing="0.01"
+                android:shadowColor="#40000000"
+                android:shadowDx="0"
+                android:shadowDy="2"
+                android:shadowRadius="4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_subtitle"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:lineHeight="22dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:alpha="0.95" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- ViewPager2 avec espacement optimal -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerPets"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/heroSection"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:overScrollMode="never" />
+
+    <!-- Empty State élégant -->
+    <LinearLayout
+        android:id="@+id/emptyStateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/heroSection"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:padding="48dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:cardCornerRadius="70dp"
+            app:cardElevation="2dp"
+            android:backgroundTint="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="🔍"
+                android:textSize="72sp"
+                android:gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aucun animal trouvé"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Essayez une autre race ou réinitialisez les filtres"
+            android:textSize="15sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            android:lineHeight="22dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
