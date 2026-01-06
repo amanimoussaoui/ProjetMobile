@@ -23,7 +23,6 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.petconnect.R;
 import com.petconnect.adapters.ProductAdapter;
 import com.petconnect.models.Product;
@@ -31,7 +30,6 @@ import com.petconnect.services.CartService;
 import com.petconnect.services.FirebaseService;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,23 +64,14 @@ public class ShopActivity extends AppCompatActivity {
         searchInput = findViewById(R.id.et_search_products);
         barChartProducts = findViewById(R.id.line_chart_products);
 
-        // Configuration du RecyclerView
+        // Configuration du RecyclerView avec callback mis à jour
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ProductAdapter(allProducts, () -> {
             updateBadge();
-            // Recharger depuis Firebase puis mettre à jour les statistiques
-            CartService.getInstance().loadFromFirebase(new CartService.CartCallback() {
-                @Override
-                public void onSuccess() {
-                    loadProductStatistics();
-                }
-
-                @Override
-                public void onError(String error) {
-                    Log.e("ShopActivity", "Erreur rechargement panier: " + error);
-                    loadProductStatistics(); // Charger quand même les stats locales
-                }
-            });
+            // Recharger les statistiques ET mettre à jour les étoiles
+            loadProductStatistics();
+            // Rafraîchir l'adapter pour mettre à jour les étoiles
+            adapter.updateProducts(new ArrayList<>(allProducts));
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -110,9 +99,6 @@ public class ShopActivity extends AppCompatActivity {
         // Charger les statistiques initiales
         loadProductStatistics();
 
-        // Charger les statistiques
-        loadProductStatistics();
-
         // Mettre à jour le badge initial
         updateBadge();
     }
@@ -122,6 +108,10 @@ public class ShopActivity extends AppCompatActivity {
         super.onResume();
         updateBadge();
         loadProductStatistics();
+        // Rafraîchir les étoiles quand on revient à l'activité
+        if (adapter != null) {
+            adapter.updateProducts(new ArrayList<>(allProducts));
+        }
     }
 
     private void updateBadge() {
@@ -198,7 +188,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 // Les produits d'exemple sont déjà chargés
-                // Pas besoin d'afficher d'erreur
+                Log.e("ShopActivity", "Erreur chargement Firebase: " + error);
             }
         });
     }
@@ -291,68 +281,10 @@ public class ShopActivity extends AppCompatActivity {
                     }
                 }
 
-                // Créer les données pour le graphique en barres (rectangles)
-                List<BarEntry> entries = new ArrayList<>();
-                List<String> productNames = new ArrayList<>(productCounts.keySet());
+                // Mettre à jour le graphique
+                updateChart(productCounts);
 
-                // Limiter à 10 produits maximum pour la lisibilité
-                if (productNames.size() > 10) {
-                    productNames = productNames.subList(0, 10);
-                }
-
-                for (int i = 0; i < productNames.size(); i++) {
-                    String productName = productNames.get(i);
-                    int count = productCounts.get(productName);
-                    entries.add(new BarEntry(i, count));
-                }
-
-                // Si aucune donnée, créer des données par défaut pour afficher le graphique
-                if (entries.isEmpty()) {
-                    entries.add(new BarEntry(0, 0));
-                    entries.add(new BarEntry(1, 0));
-                    entries.add(new BarEntry(2, 0));
-                }
-
-                BarDataSet dataSet = new BarDataSet(entries, "Quantité ajoutée");
-                dataSet.setColor(Color.parseColor("#FF6B35"));
-                dataSet.setValueTextColor(Color.BLACK);
-                dataSet.setValueTextSize(10f);
-                dataSet.setDrawValues(true);
-
-                BarData barData = new BarData(dataSet);
-                barData.setBarWidth(0.5f); // Largeur des barres
-                barChartProducts.setData(barData);
-
-                if (!productNames.isEmpty()) {
-                    List<String> finalProductNames = productNames;
-                    barChartProducts.getXAxis().setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            int index = (int) value;
-                            if (index >= 0 && index < finalProductNames.size()) {
-                                String name = finalProductNames.get(index);
-                                // Tronquer le nom si trop long
-                                if (name.length() > 8) {
-                                    return name.substring(0, 8) + "...";
-                                }
-                                return name;
-                            }
-                            return "";
-                        }
-                    });
-                    barChartProducts.getXAxis().setLabelCount(Math.min(productNames.size(), 5), true);
-                } else {
-                    // Afficher des labels par défaut
-                    barChartProducts.getXAxis().setValueFormatter(new ValueFormatter() {
-                        @Override
-                        public String getFormattedValue(float value) {
-                            return "P" + ((int) value + 1);
-                        }
-                    });
-                }
-
-                barChartProducts.invalidate();
-                barChartProducts.notifyDataSetChanged();
+                // Les étoiles seront mises à jour par l'adapter via updateProducts()
             }
 
             @Override
@@ -360,5 +292,68 @@ public class ShopActivity extends AppCompatActivity {
                 Log.e("ShopActivity", "Erreur chargement statistiques: " + error);
             }
         });
+    }
+
+    private void updateChart(Map<String, Integer> productCounts) {
+        // Créer les données pour le graphique en barres
+        List<BarEntry> entries = new ArrayList<>();
+        List<String> productNames = new ArrayList<>(productCounts.keySet());
+
+        // Limiter à 10 produits maximum pour la lisibilité
+        if (productNames.size() > 10) {
+            productNames = productNames.subList(0, 10);
+        }
+
+        for (int i = 0; i < productNames.size(); i++) {
+            String productName = productNames.get(i);
+            int count = productCounts.get(productName);
+            entries.add(new BarEntry(i, count));
+        }
+
+        // Si aucune donnée, créer des données par défaut pour afficher le graphique
+        if (entries.isEmpty()) {
+            entries.add(new BarEntry(0, 0));
+            entries.add(new BarEntry(1, 0));
+            entries.add(new BarEntry(2, 0));
+        }
+
+        BarDataSet dataSet = new BarDataSet(entries, "Quantité ajoutée");
+        dataSet.setColor(Color.parseColor("#FF6B35"));
+        dataSet.setValueTextColor(Color.BLACK);
+        dataSet.setValueTextSize(10f);
+        dataSet.setDrawValues(true);
+
+        BarData barData = new BarData(dataSet);
+        barData.setBarWidth(0.5f);
+        barChartProducts.setData(barData);
+
+        if (!productNames.isEmpty()) {
+            List<String> finalProductNames = productNames;
+            barChartProducts.getXAxis().setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    int index = (int) value;
+                    if (index >= 0 && index < finalProductNames.size()) {
+                        String name = finalProductNames.get(index);
+                        if (name.length() > 8) {
+                            return name.substring(0, 8) + "...";
+                        }
+                        return name;
+                    }
+                    return "";
+                }
+            });
+            barChartProducts.getXAxis().setLabelCount(Math.min(productNames.size(), 5), true);
+        } else {
+            barChartProducts.getXAxis().setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return "P" + ((int) value + 1);
+                }
+            });
+        }
+
+        barChartProducts.invalidate();
+        barChartProducts.notifyDataSetChanged();
     }
 }

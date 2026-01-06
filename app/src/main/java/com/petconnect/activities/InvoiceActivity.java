@@ -1,5 +1,7 @@
 package com.petconnect.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
@@ -14,8 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 import com.petconnect.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -26,8 +33,9 @@ public class InvoiceActivity extends AppCompatActivity {
     private TextView tvOrderNumber, tvOrderDate, tvCustomerName, tvCustomerEmail;
     private TextView tvSubtotal, tvShipping, tvTax, tvTotal, tvPaymentStatus;
     private LinearLayout llItemsContainer;
-    private Button btnPrint, btnClose;
+    private Button btnPrint, btnShare, btnClose;
     private ImageView ivPaymentStatus;
+    private String invoiceHtmlContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,9 @@ public class InvoiceActivity extends AppCompatActivity {
 
         // Afficher les détails
         displayInvoiceDetails(orderNumber, orderTotal, orderStatus, isPaid, itemsCount);
+
+        // Générer le HTML de la facture
+        invoiceHtmlContent = generateInvoiceHtml();
     }
 
     private void initializeViews() {
@@ -61,8 +72,9 @@ public class InvoiceActivity extends AppCompatActivity {
         llItemsContainer = findViewById(R.id.ll_items_container);
         ivPaymentStatus = findViewById(R.id.iv_payment_status);
 
-        // SEULEMENT ces 2 boutons maintenant
+        // Boutons
         btnPrint = findViewById(R.id.btn_print);
+        btnShare = findViewById(R.id.btn_share);
         btnClose = findViewById(R.id.btn_close);
 
         // Configurer les boutons
@@ -70,10 +82,16 @@ public class InvoiceActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        // Bouton Imprimer
+        // Bouton Imprimer - Version améliorée
         btnPrint.setOnClickListener(v -> {
             Log.d("InvoiceActivity", "Impression lancée");
-            printInvoice();
+            printInvoiceWithPreview();
+        });
+
+        // Bouton Partager
+        btnShare.setOnClickListener(v -> {
+            Log.d("InvoiceActivity", "Partage lancé");
+            shareInvoice();
         });
 
         // Bouton Fermer
@@ -207,9 +225,9 @@ public class InvoiceActivity extends AppCompatActivity {
         tvTotal.setText(String.format("€%.2f", grandTotal));
     }
 
-    // ==================== FONCTION D'IMPRESSION ====================
+    // ==================== FONCTION D'IMPRESSION AMÉLIORÉE ====================
 
-    private void printInvoice() {
+    private void printInvoiceWithPreview() {
         try {
             // Créer un WebView pour l'impression
             WebView webView = new WebView(this);
@@ -220,34 +238,147 @@ public class InvoiceActivity extends AppCompatActivity {
 
                 @Override
                 public void onPageFinished(WebView view, String url) {
-                    // Lorsque la page est chargée, lancer l'impression
+                    // Lorsque la page est chargée, lancer l'impression avec prévisualisation
                     createWebPrintJob(view);
                 }
             });
 
-            // Générer le HTML de la facture
-            String htmlContent = generateInvoiceHtml();
+            // Utiliser le contenu HTML généré
+            String htmlContent = invoiceHtmlContent != null ? invoiceHtmlContent : generateInvoiceHtml();
             webView.loadDataWithBaseURL(null, htmlContent, "text/HTML", "UTF-8", null);
 
         } catch (Exception e) {
             Toast.makeText(this, "Erreur d'impression: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("InvoiceActivity", "Erreur impression: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     private void createWebPrintJob(WebView webView) {
-        PrintManager printManager = (PrintManager) getSystemService(PRINT_SERVICE);
+        try {
+            PrintManager printManager = (PrintManager) getSystemService(PRINT_SERVICE);
 
-        if (printManager != null) {
-            String jobName = "Facture PetConnect - " + tvOrderNumber.getText();
-            PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
+            if (printManager != null) {
+                String jobName = "Facture PetConnect - " + tvOrderNumber.getText();
+                PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
 
-            printManager.print(jobName, printAdapter, new PrintAttributes.Builder().build());
-            Toast.makeText(this, "Impression lancée", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Service d'impression non disponible", Toast.LENGTH_SHORT).show();
+                // Créer des attributs d'impression optimisés
+                PrintAttributes attributes = new PrintAttributes.Builder()
+                        .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+                        .setResolution(new PrintAttributes.Resolution("pdf", "print", 300, 300))
+                        .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
+                        .build();
+
+                printManager.print(jobName, printAdapter, attributes);
+                Toast.makeText(this, "Impression lancée avec succès", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Service d'impression non disponible", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Erreur lors de l'impression: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e("InvoiceActivity", "Erreur createWebPrintJob: " + e.getMessage());
         }
     }
+
+    // ==================== FONCTION DE PARTAGE ====================
+
+    private void shareInvoice() {
+        try {
+            // Générer le contenu texte pour le partage
+            String shareText = generateShareText();
+
+            // Créer un fichier HTML temporaire (optionnel)
+            File tempFile = createTempHtmlFile();
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/html");
+
+            // Sujet du message
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Facture PetConnect - " + tvOrderNumber.getText());
+
+            // Texte du message
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+
+            // Si un fichier a été créé, l'attacher
+            if (tempFile != null && tempFile.exists()) {
+                Uri fileUri = FileProvider.getUriForFile(this,
+                        getApplicationContext().getPackageName() + ".provider",
+                        tempFile);
+                shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                shareIntent.setType("text/html");
+            }
+
+            // Démarrer l'activité de partage
+            startActivity(Intent.createChooser(shareIntent, "Partager la facture via"));
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Erreur lors du partage: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("InvoiceActivity", "Erreur partage: " + e.getMessage());
+        }
+    }
+
+    private String generateShareText() {
+        StringBuilder text = new StringBuilder();
+        text.append("🎫 FACTURE PETCONNECT\n\n");
+        text.append("N° Commande: ").append(tvOrderNumber.getText()).append("\n");
+        text.append("Date: ").append(tvOrderDate.getText()).append("\n");
+        text.append("Client: ").append(tvCustomerName.getText()).append("\n");
+        text.append("Email: ").append(tvCustomerEmail.getText()).append("\n");
+        text.append("Statut paiement: ").append(tvPaymentStatus.getText()).append("\n\n");
+
+        text.append("📋 DÉTAIL DES PRODUITS:\n");
+        int childCount = llItemsContainer.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View itemView = llItemsContainer.getChildAt(i);
+            if (itemView != null) {
+                TextView tvProductName = itemView.findViewById(R.id.tv_product_name);
+                TextView tvProductQty = itemView.findViewById(R.id.tv_product_qty);
+                TextView tvProductPrice = itemView.findViewById(R.id.tv_product_price);
+                TextView tvProductTotal = itemView.findViewById(R.id.tv_product_total);
+
+                text.append("• ").append(tvProductName.getText())
+                        .append(" (x").append(tvProductQty.getText()).append(") - ")
+                        .append(tvProductPrice.getText()).append(" = ")
+                        .append(tvProductTotal.getText()).append("\n");
+            }
+        }
+
+        text.append("\n💰 TOTAL:\n");
+        text.append("Sous-total: ").append(tvSubtotal.getText()).append("\n");
+        text.append("Livraison: ").append(tvShipping.getText()).append("\n");
+        text.append("TVA: ").append(tvTax.getText()).append("\n");
+        text.append("TOTAL FINAL: ").append(tvTotal.getText()).append("\n\n");
+
+        text.append("Merci pour votre confiance !\n");
+        text.append("PetConnect Boutique");
+
+        return text.toString();
+    }
+
+    private File createTempHtmlFile() {
+        try {
+            // Créer un nom de fichier unique
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.FRANCE).format(new Date());
+            String fileName = "Facture_PetConnect_" + timeStamp + ".html";
+
+            // Créer le fichier dans le cache
+            File tempFile = new File(getCacheDir(), fileName);
+
+            // Écrire le contenu HTML dans le fichier
+            String htmlContent = invoiceHtmlContent != null ? invoiceHtmlContent : generateInvoiceHtml();
+            FileOutputStream fos = new FileOutputStream(tempFile);
+            fos.write(htmlContent.getBytes());
+            fos.close();
+
+            return tempFile;
+        } catch (IOException e) {
+            Log.e("InvoiceActivity", "Erreur création fichier: " + e.getMessage());
+            return null;
+        }
+    }
+
+    // ==================== GÉNÉRATION HTML ====================
 
     private String generateInvoiceHtml() {
         StringBuilder html = new StringBuilder();
@@ -329,5 +460,30 @@ public class InvoiceActivity extends AppCompatActivity {
                 .append("</body></html>");
 
         return html.toString();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Nettoyer les fichiers temporaires si nécessaire
+        cleanupTempFiles();
+    }
+
+    private void cleanupTempFiles() {
+        try {
+            File cacheDir = getCacheDir();
+            if (cacheDir.exists() && cacheDir.isDirectory()) {
+                File[] files = cacheDir.listFiles((dir, name) -> name.startsWith("Facture_PetConnect_"));
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.exists()) {
+                            file.delete();
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e("InvoiceActivity", "Erreur nettoyage fichiers: " + e.getMessage());
+        }
     }
 }

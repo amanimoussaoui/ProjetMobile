@@ -377,7 +377,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Action Buttons - UNIQUEMENT IMPRIMER ET FERMER -->
+        <!-- Action Buttons - AJOUTER LE BOUTON PARTAGER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -392,6 +392,18 @@
                 android:layout_marginEnd="8dp"
                 android:text="🖨️ Imprimer"
                 android:textSize="14sp"
+                style="@style/Widget.AppCompat.Button.Colored"/>
+
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
+                android:text="↗️ Partager"
+                android:textSize="14sp"
+                android:backgroundTint="@color/teal_700"
                 style="@style/Widget.AppCompat.Button.Colored"/>
 
             <Button

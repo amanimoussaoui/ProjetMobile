@@ -31,7 +31,17 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginBottom="8dp"/>
+
+        <!-- ÉTOILES DE POPULARITÉ -->
+        <LinearLayout
+            android:id="@+id/ll_stars_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+            <!-- Les étoiles seront ajoutées dynamiquement -->
+        </LinearLayout>
 
         <!-- Prix -->
         <TextView

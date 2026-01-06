@@ -45,6 +45,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <!-- ÉTOILES DE POPULARITÉ -->
+        <LinearLayout
+            android:id="@+id/ll_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Les étoiles seront ajoutées dynamiquement -->
+
+        </LinearLayout>
+
         <!-- Prix -->
         <TextView
             android:id="@+id/tv_product_price"
@@ -54,7 +68,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/primary_color"
-            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_stars"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

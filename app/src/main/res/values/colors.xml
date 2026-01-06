@@ -54,4 +54,10 @@
     <color name="divider_grey">#1F000000</color>
 
 
+        <!-- ... vos couleurs existantes ... -->
+
+        <!-- Couleur pour les étoiles -->
+        <color name="star_color">#FFD700</color> <!-- Or -->
+        <color name="star_empty">#CCCCCC</color> <!-- Gris -->
+
 </resources>

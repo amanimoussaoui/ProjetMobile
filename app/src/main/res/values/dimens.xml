@@ -1,0 +1,6 @@
+<resources>
+    <!-- ... vos dimensions existantes ... -->
+
+    <!-- Taille des étoiles -->
+    <dimen name="star_size">16dp</dimen>
+</resources>
